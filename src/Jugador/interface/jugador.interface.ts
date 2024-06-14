@@ -3,11 +3,11 @@ export class Jugador {
   Foto: string;
   Puntos: number;
   Contraseña: string;
-  Amigos: string[];
-  id_partidos: null;
+  Amigos?: string[];
+  id_partidos?: null;
   Rango: string;
   Gmail: string;
   Apellido: string;
-  Horario: Date;
+  Horario?: Date;
   id: number;
 }

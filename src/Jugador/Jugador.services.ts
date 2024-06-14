@@ -1,17 +1,54 @@
-import { Injectable } from '@nestjs/common';
-import { Jugador } from './interface/jugador.interface';
-import { ConfigService } from '@nestjs/config';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { JugadorDto } from './dto/JugadorDto';
+import { updateJugadorDto } from './dto/updateJugador.dto';
+import { Jugador } from './Jugador.entity';
 
 @Injectable()
 export class JugadorService {
-  constructor(private configService: ConfigService) {}
-  private readonly jugadores: Jugador[] = [];
+  constructor(
+    @InjectRepository(Jugador) private jugadorRepository: Repository<Jugador>,
+  ) {}
 
-  create(jugador: Jugador) {
-    this.jugadores.push(jugador);
+  Create(Jugador: JugadorDto) {
+    const newJugador = this.jugadorRepository.create(Jugador);
+    return this.jugadorRepository.save(newJugador);
   }
 
-  findAll(): Jugador[] {
-    return this.jugadores;
+  GetJugadores() {
+    return this.jugadorRepository.find();
+  }
+
+  UpdateJugador(id: number, jugador: updateJugadorDto) {
+    this.jugadorRepository.update({ id }, jugador);
+  }
+
+  GetJugadorById(id: number) {
+    this.jugadorRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+  ActualizarPuntos(id: number) {
+    this.jugadorRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  Login(Gmail: string, Contraseña: string) {
+    const jugador = this.jugadorRepository.findOne({
+      where: {
+        Gmail: Gmail,
+        Contraseña: Contraseña,
+      },
+    });
+    if (!jugador) {
+      return new HttpException('El usuario no existe', HttpStatus.NOT_FOUND);
+    } else {
+    }
   }
 }
