@@ -37,11 +37,6 @@ export class JugadorController {
     return this.jugadorService.GetJugadorById(id);
   }
 
-  @Patch(':id/:puntos')
-  async ActualizarPuntos(@Param('id', ParseIntPipe) id: number) {
-    return this.jugadorService.ActualizarPuntos(id);
-  }
-
   @Post(':Gmail/:Contraseña')
   async Login(
     @Param('Gmail') @Param('Contraseña') Gmail: string,

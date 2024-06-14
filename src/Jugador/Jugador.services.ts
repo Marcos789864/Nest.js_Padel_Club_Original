@@ -31,14 +31,6 @@ export class JugadorService {
       },
     });
   }
-  ActualizarPuntos(id: number) {
-    this.jugadorRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
-  }
-
   Login(Gmail: string, Contraseña: string) {
     const jugador = this.jugadorRepository.findOne({
       where: {
