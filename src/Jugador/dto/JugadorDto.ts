@@ -2,18 +2,24 @@ import { IsEmail, IsNotEmpty, IsString, IsNumber, IsIn } from 'class-validator';
 import { RangoJugador } from '../Jugador.entity';
 export class JugadorDto {
   @IsNotEmpty()
-  @IsString()
-  Nombre: string;
-  @IsString()
-  Foto?: string;
-  @IsNotEmpty()
   @IsNumber()
   Puntos: number;
   @IsNotEmpty()
   @IsString()
   Contraseña: string;
-  Amigos?: string[];
-  id_partidos: null;
+  @IsNotEmpty()
+  @IsEmail()
+  @IsString()
+  Gmail: string;
+  @IsNotEmpty()
+  @IsString()
+  Apellido: string;
+  @IsNotEmpty()
+  @IsString()
+  Nombre: string;
+  Amigos?: string;
+  @IsNumber()
+  idPartido: number;
   @IsNotEmpty()
   @IsIn([
     RangoJugador.Bronce1,
@@ -34,12 +40,8 @@ export class JugadorDto {
     RangoJugador.Campeon,
   ])
   Rango: RangoJugador;
-  @IsNotEmpty()
-  @IsEmail()
+  @IsNumber()
+  IdGrupo: number;
   @IsString()
-  Gmail: string;
-  @IsNotEmpty()
-  @IsString()
-  Apellido: string;
-  Horario?: Date;
+  Foto?: string;
 }

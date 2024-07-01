@@ -1,10 +1,13 @@
+import { RangoJugador } from '../Jugador.entity';
 export class updateJugadorDto {
   Nombre?: string;
   Foto?: string;
   Puntos?: number;
   Contraseña?: string;
-  Amigos?: string[];
+  Amigos?: string;
   Gmail?: string;
   Apellido?: string;
-  Horario?: Date;
+  idPartido?: number;
+  Rango?: RangoJugador;
+  IdGrupo?: number;
 }

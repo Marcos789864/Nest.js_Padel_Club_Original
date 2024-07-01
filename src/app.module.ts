@@ -1,17 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Jugador } from '../src/Jugador/Jugador.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'mssql',
       host: 'localhost',
-      port: 3306,
-      username: 'root',
+      port: 1433,
+      username: 'nestjs',
       password: 'root',
-      database: 'test',
-      entities: [Jugador],
+      database: 'PadelClub',
+      options: {
+        encrypt: true,
+        trustServerCertificate: true,
+      },
       synchronize: true,
     }),
   ],

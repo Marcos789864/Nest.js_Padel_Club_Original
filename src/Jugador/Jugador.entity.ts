@@ -24,26 +24,11 @@ export class Jugador {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  Nombre: string;
-
-  @Column()
-  Foto: string;
-
   @Column()
   Puntos: number;
 
   @Column()
   Contraseña: string;
-
-  @Column()
-  Amigos: string[];
-
-  @Column()
-  id_partidos: number;
-
-  @Column()
-  Rango: RangoJugador;
 
   @Column({ unique: true })
   Gmail: string;
@@ -51,6 +36,21 @@ export class Jugador {
   @Column()
   Apellido: string;
 
+  @Column({ unique: true })
+  Nombre: string;
+
   @Column()
-  Horario: Date;
+  Amigos: string;
+
+  @Column()
+  idPartidos: number;
+
+  @Column()
+  Rango: RangoJugador;
+
+  @Column()
+  IdGrupo: number;
+
+  @Column()
+  Foto: string;
 }
