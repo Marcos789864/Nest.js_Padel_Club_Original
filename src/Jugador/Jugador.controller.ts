@@ -10,7 +10,7 @@ import {
 import { JugadorDto } from './dto/JugadorDto';
 import { JugadorService } from './Jugador.services';
 import { updateJugadorDto } from './dto/updateJugador.dto';
-@Controller('jugador')
+@Controller('Jugador')
 export class JugadorController {
   constructor(private jugadorService: JugadorService) {}
 
@@ -20,7 +20,7 @@ export class JugadorController {
   }
 
   @Get()
-  async findAll() {
+  async BuscarJugador() {
     return this.jugadorService.GetJugadores();
   }
 
