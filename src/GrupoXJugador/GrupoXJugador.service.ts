@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { GrupoXJugadorDto } from './dto/GrupoXJugador.dto';
 import { GrupoXJugador } from './GrupoXJugador.entity';
 import { Jugador } from 'src/Jugador/Jugador.entity';
+import { GrupoXJugadorUpdateDto } from './dto/GrupoXJugadorUpdate.dto';
 
 @Injectable()
 export class GrupoXJugadorService {
@@ -19,11 +20,24 @@ export class GrupoXJugadorService {
     return this.GrupoXJugadorRepository.save(newJugador);
   }
 
-  MostrarJugadores(id: number) {
-    return this.JugadorRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
+  UpdateGrupoXJugador(idGrupo : number, GrupoXJugador: GrupoXJugadorUpdateDto )
+  {
+    this.GrupoXJugadorRepository.update({ idGrupo }, GrupoXJugador);
   }
-}
+
+  async getGrupoJugadores(idGrupo: number) {
+
+    const jugadorXGrupo = await this.GrupoXJugadorRepository.findOne({ where: { idGrupo } });
+    if (!jugadorXGrupo) {
+      throw new NotFoundException(`Grupo con id ${idGrupo} no encontrado`);
+    }
+
+    
+    const jugadores = await this.JugadorRepository.findBy({
+      id: In([jugadorXGrupo.id1, jugadorXGrupo.id2, jugadorXGrupo.id3, jugadorXGrupo.id4]),
+    });
+
+    return { grupo: jugadorXGrupo, jugadores };
+  }
+  }
+

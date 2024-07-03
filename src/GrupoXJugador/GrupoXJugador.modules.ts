@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GrupoXJugador } from './GrupoXJugador.entity';
 import { GrupoXJugadorService } from './GrupoXJugador.service';
 import { GrupoXJugadorController } from './GrupoXJugador.controller';
+import { Jugador } from 'src/Jugador/Jugador.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GrupoXJugador])],
+  imports: [TypeOrmModule.forFeature([GrupoXJugador,Jugador])],
   providers: [GrupoXJugadorService],
   controllers: [GrupoXJugadorController],
 })
