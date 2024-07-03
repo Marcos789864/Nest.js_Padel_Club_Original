@@ -1,7 +1,10 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class GrupoXJugador {
+  @Column()
+  @PrimaryGeneratedColumn()
+  idGrupoXJugador: number;
   @Column()
   idGrupo: number;
   @Column()

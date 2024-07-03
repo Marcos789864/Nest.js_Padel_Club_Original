@@ -1,7 +1,7 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, ParseIntPipe } from '@nestjs/common';
 import { GrupoXJugadorDto } from './dto/GrupoXJugador.dto';
 import { GrupoXJugadorService } from './GrupoXJugador.service';
-@Controller('GrupoJugador')
+@Controller('GrupoXJugador')
 export class GrupoXJugadorController {
   constructor(private GrupojugadorService: GrupoXJugadorService) {}
 
@@ -10,8 +10,8 @@ export class GrupoXJugadorController {
     return this.GrupojugadorService.AgregarJugador(createGrupoJugadorDto);
   }
 
-  @Get()
-  async BuscarJugador() {
+  @Get(':id')
+  async BuscarJugador(@Param('id', ParseIntPipe) id: number) {
     return this.GrupojugadorService.MostrarJugadores();
   }
 }
