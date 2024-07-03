@@ -6,16 +6,12 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mssql',
+      type: 'postgres',
       host: 'localhost',
-      port: 1433,
+      port: 5432,
       username: 'nestjs',
       password: 'root',
-      database: 'PadelClub',
-      options: {
-        encrypt: true,
-        trustServerCertificate: true,
-      },
+      database: 'postgres',
       synchronize: true,
     }),
   ],
