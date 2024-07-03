@@ -19,7 +19,7 @@ export class JugadorDto {
   Nombre: string;
   Amigos?: string;
   @IsNumber()
-  idPartido: number;
+  idPartido?: number;
   @IsNotEmpty()
   @IsIn([
     RangoJugador.Bronce1,
@@ -41,7 +41,7 @@ export class JugadorDto {
   ])
   Rango: RangoJugador;
   @IsNumber()
-  IdGrupo: number;
+  IdGrupo?: number;
   @IsString()
   Foto?: string;
 }

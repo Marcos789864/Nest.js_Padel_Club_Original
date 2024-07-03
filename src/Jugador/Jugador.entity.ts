@@ -43,7 +43,7 @@ export class Jugador {
   Amigos: string;
 
   @Column()
-  idPartidos: number;
+  idPartido: number;
 
   @Column()
   Rango: RangoJugador;
