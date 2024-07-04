@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Jugador } from '../Jugador/Jugador.entity';
+import { Jugador } from 'src/Jugador/Jugador.entity';
 import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {

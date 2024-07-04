@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, IsNumber, IsIn } from 'class-validator';
-import { RangoJugador } from '../Jugador.entity';
+import { Club, RangoJugador } from '../Jugador.entity';
 export class JugadorDto {
   @IsNotEmpty()
   @IsNumber()
@@ -44,4 +44,10 @@ export class JugadorDto {
   IdGrupo?: number;
   @IsString()
   Foto?: string;
+  @IsNotEmpty()
+  @IsIn([
+    Club.Club1,
+  ])
+  Club: Club;
+
 }

@@ -19,6 +19,11 @@ export enum RangoJugador {
   Campeon = 'Campeon',
 }
 
+export  enum Club
+{
+  Club1 = 'Hebraica',
+}
+
 @Entity()
 export class Jugador {
   @PrimaryGeneratedColumn()
@@ -53,4 +58,7 @@ export class Jugador {
 
   @Column()
   Foto: string;
+
+  @Column()
+  Club: Club;
 }

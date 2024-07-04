@@ -1,4 +1,4 @@
-import { RangoJugador } from '../Jugador.entity';
+import { RangoJugador, Club } from '../Jugador.entity';
 export class updateJugadorDto {
   Nombre?: string;
   Foto?: string;
@@ -10,4 +10,5 @@ export class updateJugadorDto {
   idPartido?: number;
   Rango?: RangoJugador;
   IdGrupo?: number;
+  Club?: Club;
 }
