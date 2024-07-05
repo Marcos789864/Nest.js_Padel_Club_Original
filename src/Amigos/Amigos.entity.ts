@@ -1,9 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
-export class GrupoJugador {
+export class Amigos {
   @PrimaryGeneratedColumn()
-  idGrupo: number;
-
+  idAmistad: number;
   @Column()
-  idJugador: number;
+  id1: number;
+  @Column()
+  id2: number;
 }

@@ -2,18 +2,18 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { JugadorModule } from './Jugador/Jugador.modules';
-import { GrupoJugadorModule } from './Grupo/GrupoJugador.modules';
-import { GrupoJugador } from './Grupo/GrupoJugador.entity';
 import { AppService } from './app.service';
 import { Jugador } from './Jugador/Jugador.entity';
 import { GrupoXJugadorModules } from './GrupoXJugador/GrupoXJugador.modules';
 import { GrupoXJugador } from './GrupoXJugador/GrupoXJugador.entity';
+import { Amigos } from './Amigos/Amigos.entity';
+import { AmigosModule } from './Amigos/Amigos.modules';
 
 @Module({
   imports: [
     JugadorModule,
-    GrupoJugadorModule,
     GrupoXJugadorModules,
+    AmigosModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -21,7 +21,7 @@ import { GrupoXJugador } from './GrupoXJugador/GrupoXJugador.entity';
       username: 'postgres',
       password: 'root',
       database: 'postgres',
-      entities: [Jugador, GrupoJugador, GrupoXJugador],
+      entities: [Jugador, GrupoXJugador, Amigos],
       synchronize: true,
     }),
   ],

@@ -20,24 +20,27 @@ export class GrupoXJugadorService {
     return this.GrupoXJugadorRepository.save(newJugador);
   }
 
-  UpdateGrupoXJugador(idGrupo : number, GrupoXJugador: GrupoXJugadorUpdateDto )
-  {
+  UpdateGrupoXJugador(idGrupo: number, GrupoXJugador: GrupoXJugadorUpdateDto) {
     this.GrupoXJugadorRepository.update({ idGrupo }, GrupoXJugador);
   }
 
   async getGrupoJugadores(idGrupo: number) {
-
-    const jugadorXGrupo = await this.GrupoXJugadorRepository.findOne({ where: { idGrupo } });
+    const jugadorXGrupo = await this.GrupoXJugadorRepository.findOne({
+      where: { idGrupo },
+    });
     if (!jugadorXGrupo) {
       throw new NotFoundException(`Grupo con id ${idGrupo} no encontrado`);
     }
 
-    
     const jugadores = await this.JugadorRepository.findBy({
-      id: In([jugadorXGrupo.id1, jugadorXGrupo.id2, jugadorXGrupo.id3, jugadorXGrupo.id4]),
+      id: In([
+        jugadorXGrupo.id1,
+        jugadorXGrupo.id2,
+        jugadorXGrupo.id3,
+        jugadorXGrupo.id4,
+      ]),
     });
 
     return { grupo: jugadorXGrupo, jugadores };
   }
-  }
-
+}

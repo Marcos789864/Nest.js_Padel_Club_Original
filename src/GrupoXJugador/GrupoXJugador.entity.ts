@@ -4,8 +4,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class GrupoXJugador {
   @Column()
   @PrimaryGeneratedColumn()
-  idGrupoXJugador: number;
-  @Column()
   idGrupo: number;
   @Column()
   id1: number;

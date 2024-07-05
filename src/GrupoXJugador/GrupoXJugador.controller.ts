@@ -1,33 +1,52 @@
-import { Body, Controller, Post, Get, ParseIntPipe, Param, BadRequestException, NotFoundException, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  ParseIntPipe,
+  Param,
+  BadRequestException,
+  NotFoundException,
+  Patch,
+} from '@nestjs/common';
 import { GrupoXJugadorDto } from './dto/GrupoXJugador.dto';
 import { GrupoXJugadorService } from './GrupoXJugador.service';
 import { GrupoXJugadorUpdateDto } from './dto/GrupoXJugadorUpdate.dto';
 @Controller('GrupoXJugador')
 export class GrupoXJugadorController {
-  constructor(private GrupojugadorService: GrupoXJugadorService) {}
+  constructor(private GrupoXjugadorService: GrupoXJugadorService) {}
 
   @Post()
   async create(@Body() createGrupoJugadorDto: GrupoXJugadorDto) {
-    return this.GrupojugadorService.AgregarJugador(createGrupoJugadorDto);
+    return this.GrupoXjugadorService.AgregarJugador(createGrupoJugadorDto);
   }
 
-  @Patch(":id")
-  async updateGrupo( @Param('id', ParseIntPipe) id: number,
-  @Body() GrupoXJugador: GrupoXJugadorUpdateDto,)
-  {
-    return this.GrupojugadorService.UpdateGrupoXJugador(id, GrupoXJugador);
+  @Patch(':id')
+  async updateGrupo(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() grupoXJugador: GrupoXJugadorUpdateDto,
+  ) {
+    try {
+      await this.GrupoXjugadorService.UpdateGrupoXJugador(id, grupoXJugador);
+      return { message: 'Grupo actualizado exitosamente' };
+    } catch (error) {
+      throw new BadRequestException('Error al actualizar el grupo');
+    }
   }
 
   @Get(':idGrupo')
-  async getGrupoJugadores(@Param('idGrupo') idGrupo: number) {
+  async getGrupoJugadores(@Param('idGrupo', ParseIntPipe) idGrupo: number) {
     try {
-      const { grupo, jugadores } = await this.GrupojugadorService.getGrupoJugadores(idGrupo);
+      const { grupo, jugadores } =
+        await this.GrupoXjugadorService.getGrupoJugadores(idGrupo);
       return { grupo, jugadores };
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw new BadRequestException(error.message);
       }
-      throw new BadRequestException('Error al obtener el registro de JugadorXGrupo');
+      throw new BadRequestException(
+        'Error al obtener el registro de JugadorXGrupo',
+      );
     }
   }
 }

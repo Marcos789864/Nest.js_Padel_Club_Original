@@ -4,7 +4,6 @@ export class updateJugadorDto {
   Foto?: string;
   Puntos?: number;
   Contraseña?: string;
-  Amigos?: string;
   Gmail?: string;
   Apellido?: string;
   idPartido?: number;

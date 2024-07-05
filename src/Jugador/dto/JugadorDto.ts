@@ -17,7 +17,6 @@ export class JugadorDto {
   @IsNotEmpty()
   @IsString()
   Nombre: string;
-  Amigos?: string;
   @IsNumber()
   idPartido?: number;
   @IsNotEmpty()
@@ -45,9 +44,6 @@ export class JugadorDto {
   @IsString()
   Foto?: string;
   @IsNotEmpty()
-  @IsIn([
-    Club.Club1,
-  ])
+  @IsIn([Club.Club1])
   Club: Club;
-
 }

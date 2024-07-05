@@ -6,7 +6,7 @@ import { GrupoXJugadorController } from './GrupoXJugador.controller';
 import { Jugador } from 'src/Jugador/Jugador.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([GrupoXJugador,Jugador])],
+  imports: [TypeOrmModule.forFeature([GrupoXJugador, Jugador])],
   providers: [GrupoXJugadorService],
   controllers: [GrupoXJugadorController],
 })

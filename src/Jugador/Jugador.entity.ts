@@ -19,8 +19,7 @@ export enum RangoJugador {
   Campeon = 'Campeon',
 }
 
-export  enum Club
-{
+export enum Club {
   Club1 = 'Hebraica',
 }
 
@@ -43,9 +42,6 @@ export class Jugador {
 
   @Column({ unique: true })
   Nombre: string;
-
-  @Column()
-  Amigos: string;
 
   @Column()
   idPartido: number;
