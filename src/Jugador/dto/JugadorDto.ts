@@ -6,7 +6,7 @@ export class JugadorDto {
   Puntos?: number;
   @IsNotEmpty()
   @IsString()
-  Contraseña: string;
+  Contraseña: any;
   @IsNotEmpty()
   @IsEmail()
   @IsString()
