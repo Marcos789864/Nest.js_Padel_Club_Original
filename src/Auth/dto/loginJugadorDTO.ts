@@ -1,10 +1,11 @@
-import { IsEmail, IsString, isString } from "class-validator";
+import { IsEmail, IsString, IsNotEmpty } from 'class-validator';
 
-export class LoginJugadorDTO
-{   
-    @IsEmail()
-    Gmail: string;
+export class LoginJugadorDTO {
+  @IsEmail()
+  @IsNotEmpty()
+  Gmail: string;
 
-    @IsString()
-    Contraseña: string;
+  @IsString()
+  @IsNotEmpty()
+  Contraseña: string;
 }

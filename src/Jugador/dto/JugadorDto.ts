@@ -3,7 +3,7 @@ import { Club, RangoJugador } from '../Jugador.entity';
 export class JugadorDto {
   @IsNotEmpty()
   @IsNumber()
-  Puntos: number;
+  Puntos?: number;
   @IsNotEmpty()
   @IsString()
   Contraseña: string;
@@ -11,9 +11,6 @@ export class JugadorDto {
   @IsEmail()
   @IsString()
   Gmail: string;
-  @IsNotEmpty()
-  @IsString()
-  Apellido: string;
   @IsNotEmpty()
   @IsString()
   Nombre: string;
@@ -38,7 +35,7 @@ export class JugadorDto {
     RangoJugador.Rubi3,
     RangoJugador.Campeon,
   ])
-  Rango: RangoJugador;
+  Rango: RangoJugador.Bronce1;
   @IsNumber()
   IdGrupo?: number;
   @IsString()

@@ -7,17 +7,14 @@ import {
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
-import { JugadorDto } from './dto/JugadorDto';
 import { JugadorService } from './Jugador.services';
 import { updateJugadorDto } from './dto/updateJugador.dto';
+import { LoginJugadorDTO } from 'src/Auth/dto/loginJugadorDTO';
+import { RegisterJugadorDTO } from 'src/Auth/dto/registerJugadorDTO';
+
 @Controller('Jugador')
 export class JugadorController {
   constructor(private jugadorService: JugadorService) {}
-
-  @Post()
-  async create(@Body() createJugadorDto: JugadorDto) {
-    return this.jugadorService.Create(createJugadorDto);
-  }
 
   @Get()
   async BuscarJugador() {
@@ -25,7 +22,7 @@ export class JugadorController {
   }
 
   @Patch(':id')
-  async updateRango(
+  async updateJugador(
     @Param('id', ParseIntPipe) id: number,
     @Body() jugador: updateJugadorDto,
   ) {
@@ -37,11 +34,13 @@ export class JugadorController {
     return this.jugadorService.GetJugadorById(id);
   }
 
-  @Post(':Gmail/:Contraseña')
-  async Login(
-    @Param('Gmail') @Param('Contraseña') Gmail: string,
-    Contraseña: string,
-  ) {
-    return this.jugadorService.Login(Gmail, Contraseña);
+  @Post('Login')
+  async Login(@Body() login: LoginJugadorDTO) {
+    return this.jugadorService.Login(login);
+  }
+
+  @Post('Register')
+  async create(@Body() createJugadorDto: RegisterJugadorDTO) {
+    return this.jugadorService.Register(createJugadorDto);
   }
 }

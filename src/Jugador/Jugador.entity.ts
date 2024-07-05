@@ -29,7 +29,7 @@ export class Jugador {
   id: number;
 
   @Column()
-  Puntos: number;
+  Puntos: number = 1000;
 
   @Column()
   Contraseña: string;
@@ -37,20 +37,11 @@ export class Jugador {
   @Column({ unique: true })
   Gmail: string;
 
-  @Column()
-  Apellido: string;
-
   @Column({ unique: true })
   Nombre: string;
 
   @Column()
-  idPartido: number;
-
-  @Column()
-  Rango: RangoJugador;
-
-  @Column()
-  IdGrupo: number;
+  Rango: RangoJugador = RangoJugador.Bronce1;
 
   @Column()
   Foto: string;

@@ -1,9 +1,11 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JugadorDto } from './dto/JugadorDto';
 import { updateJugadorDto } from './dto/updateJugador.dto';
 import { Jugador } from './Jugador.entity';
+import { LoginJugadorDTO } from 'src/Auth/dto/loginJugadorDTO';
+import { RegisterJugadorDTO } from 'src/Auth/dto/registerJugadorDTO';
 
 @Injectable()
 export class JugadorService {
@@ -31,16 +33,23 @@ export class JugadorService {
       },
     });
   }
-  Login(Gmail: string, Contraseña: string) {
-    const jugador = this.jugadorRepository.findOne({
+
+  async Login(info: LoginJugadorDTO) {
+    const jugador = await this.jugadorRepository.findOne({
       where: {
-        Gmail: Gmail,
-        Contraseña: Contraseña,
+        Gmail: info.Gmail,
+        Contraseña: info.Contraseña,
       },
     });
     if (!jugador) {
-      return new HttpException('El usuario no existe', HttpStatus.NOT_FOUND);
+      return 'El usuario no existe';
     } else {
+      return 'Inicio Exitoso';
     }
+  }
+
+  async Register(register: RegisterJugadorDTO) {
+    const registerJugador = await this.jugadorRepository.create(register);
+    return this.jugadorRepository.save(registerJugador);
   }
 }

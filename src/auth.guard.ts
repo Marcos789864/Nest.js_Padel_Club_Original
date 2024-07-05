@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { jwtConstants } from './Auth/entities/constant';
 import { Request } from 'express';
 
 @Injectable()
@@ -20,9 +21,9 @@ export class AuthGuard implements CanActivate {
     }
     try {
       const payload = await this.jwtService.verifyAsync(token, {
-      //  secret: jwtConstants.secret,
+        secret: jwtConstants.secret,
       });
-      request['user'] = payload;
+      request['Jugador'] = payload;
     } catch {
       throw new HttpException('Token invalido', HttpStatus.UNAUTHORIZED);
     }

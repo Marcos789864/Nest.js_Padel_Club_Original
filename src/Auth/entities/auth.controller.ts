@@ -6,9 +6,9 @@ import {
   HttpStatus,
   Post,
   Request,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../../auth.guard';
 import { AuthService } from './auth.service';
 import { LoginJugadorDTO } from '../dto/loginJugadorDTO';
 
@@ -25,6 +25,6 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
-    return req.user;
+    return req.Jugador;
   }
 }

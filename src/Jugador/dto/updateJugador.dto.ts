@@ -5,9 +5,6 @@ export class updateJugadorDto {
   Puntos?: number;
   Contraseña?: string;
   Gmail?: string;
-  Apellido?: string;
-  idPartido?: number;
   Rango?: RangoJugador;
-  IdGrupo?: number;
   Club?: Club;
 }
