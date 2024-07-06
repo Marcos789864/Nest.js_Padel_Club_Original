@@ -16,4 +16,5 @@ export class RegisterJugadorDTO {
   Club: Club;
   @IsString()
   Foto: string;
+  iv: string;
 }

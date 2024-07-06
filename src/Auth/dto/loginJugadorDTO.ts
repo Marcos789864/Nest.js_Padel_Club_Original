@@ -5,5 +5,5 @@ export class LoginJugadorDTO {
   @IsNotEmpty()
   Gmail: string;
   @IsNotEmpty()
-  Contraseña: any;
+  Contraseña: string;
 }

@@ -48,4 +48,7 @@ export class Jugador {
 
   @Column()
   Club: Club;
+
+  @Column()
+  iv: string;
 }
