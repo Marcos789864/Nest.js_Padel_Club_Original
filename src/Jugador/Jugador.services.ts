@@ -73,44 +73,38 @@ export class JugadorService {
 
   async Register(register: RegisterJugadorDTO) {
     
-      // Generar un IV aleatorio
+    
       try {
         console.log('Iniciando registro...');
   
-        // Generar un IV aleatorio
+        
         const iv = randomBytes(16);
         console.log('IV generado:', iv);
   
-        // Generar una clave a partir de la contraseña
+        
         const key = (await promisify(scrypt)(
           register.Contraseña,
           'salt',
           32,
         )) as Buffer;
-        console.log('Clave generada a partir de la contraseña:', key);
+        
   
-        // Crear el cifrado usando aes-256-ctr y el IV generado
+   
         const cipher = createCipheriv('aes-256-ctr', jwtConstants.secret, iv);
   
-        // Cifrar la contraseña
+   
         let encryptedText = Buffer.concat([
           cipher.update(register.Contraseña, 'utf8'),
           cipher.final(),
         ]);
-        console.log('Contraseña cifrada:', encryptedText);
+       
   
-        // Convertir el IV a una cadena en formato hexadecimal
         const ivString = iv.toString('hex');
-        console.log('IV en formato hexadecimal:', ivString);
-  
-        // Almacenar la contraseña cifrada y el IV en la base de datos
+       
         register.Contraseña = encryptedText.toString('hex');
         register.iv = ivString;
-  
-        // Crear una nueva instancia de Jugador y guardarla en la base de datos
         const registerJugador = await this.jugadorRepository.create(register);
-        await this.jugadorRepository.save(registerJugador);
-        console.log('Registro completado:', registerJugador);
+        await this.jugadorRepository.save(registerJugador)
   
         return registerJugador;
       } catch (error) {
