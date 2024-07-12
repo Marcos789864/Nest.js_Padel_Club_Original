@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Jugador } from 'src/Jugador/Jugador.entity';
@@ -37,7 +37,7 @@ export class AuthService {
     decryptedText += decipher.final('utf8');
 
     if (Contraseña !== decryptedText) {
-      return 'Contraseña incorrecta';
+      throw new Error(`Error con la contraseña`);
     } else {
       const payload = { Gmail: user.Gmail, Contraseña: user.Contraseña };
       return {
