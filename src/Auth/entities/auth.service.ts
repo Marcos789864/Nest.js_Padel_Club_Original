@@ -22,6 +22,9 @@ export class AuthService {
       },
     });
 
+    if (!user) {
+      return 'Email no encontrado';
+    }
     const ivBuffer = Buffer.from(user.iv, 'hex');
 
     const decipher = createDecipheriv(
@@ -30,7 +33,6 @@ export class AuthService {
       ivBuffer,
     );
 
-    // Decifrar la contraseña y comparar
     let decryptedText = decipher.update(user.Contraseña, 'hex', 'utf8');
     decryptedText += decipher.final('utf8');
 
