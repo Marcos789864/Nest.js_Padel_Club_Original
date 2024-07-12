@@ -1,17 +1,18 @@
 import { Module } from '@nestjs/common';
-import { JugadorModule } from 'src/Jugador/Jugador.modules';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
 import { jwtConstants } from './constant';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
+import { Jugador } from 'src/Jugador/Jugador.entity';
 
 @Module({
   imports: [
-    JugadorModule,
+    TypeOrmModule.forFeature([Jugador]),
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '1m' },
     }),
   ],
   providers: [AuthService],

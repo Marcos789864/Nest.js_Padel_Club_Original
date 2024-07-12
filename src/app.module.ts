@@ -8,12 +8,14 @@ import { GrupoXJugadorModules } from './GrupoXJugador/GrupoXJugador.modules';
 import { GrupoXJugador } from './GrupoXJugador/GrupoXJugador.entity';
 import { Amigos } from './Amigos/Amigos.entity';
 import { AmigosModule } from './Amigos/Amigos.modules';
+import { AuthModule } from './Auth/entities/authModules';
 
 @Module({
   imports: [
     JugadorModule,
     GrupoXJugadorModules,
     AmigosModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
