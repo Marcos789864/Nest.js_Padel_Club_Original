@@ -8,6 +8,8 @@ import { GrupoXJugadorModules } from './GrupoXJugador/GrupoXJugador.modules';
 import { GrupoXJugador } from './GrupoXJugador/GrupoXJugador.entity';
 import { Amigos } from './Amigos/Amigos.entity';
 import { AmigosModule } from './Amigos/Amigos.modules';
+import { Notificaciones } from './Notificaciones/Notificaciones.entity';
+import { NotificacionesModule } from './Notificaciones/Notificaciones.modules';
 import { AuthModule } from './Auth/entities/authModules';
 
 @Module({
@@ -16,6 +18,7 @@ import { AuthModule } from './Auth/entities/authModules';
     GrupoXJugadorModules,
     AmigosModule,
     AuthModule,
+    NotificacionesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -23,7 +26,7 @@ import { AuthModule } from './Auth/entities/authModules';
       username: 'postgres',
       password: 'root',
       database: 'postgres',
-      entities: [Jugador, GrupoXJugador, Amigos],
+      entities: [Jugador, GrupoXJugador, Amigos, Notificaciones],
       synchronize: true,
     }),
   ],
