@@ -79,9 +79,6 @@ export class AuthService {
   }
 
   async desEncriptarToken(token) {
-    if (!token) {
-      throw new HttpException('Token nulo', HttpStatus.UNAUTHORIZED);
-    }
     try {
       const payload = await this.jwtService.verifyAsync(token, {
         secret: jwtConstants.secret,
