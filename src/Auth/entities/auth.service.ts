@@ -1,9 +1,14 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Jugador } from 'src/Jugador/Jugador.entity';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterJugadorDTO } from 'src/Auth/dto/registerJugadorDTO';
+import { Request } from 'express';
 import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
 import { promisify } from 'util';
 import { jwtConstants } from 'src/Auth/entities/constant';
@@ -39,7 +44,7 @@ export class AuthService {
     if (Contraseña !== decryptedText) {
       throw new Error(`Error con la contraseña`);
     } else {
-      const payload = { Gmail: user.Gmail, Contraseña: user.Contraseña };
+      const payload = { Usuario: user };
       return {
         access_Token: await this.jwtService.signAsync(payload),
       };
@@ -50,10 +55,11 @@ export class AuthService {
     throw new Error('Error en el proceso de inicio de sesión');
   }
 
-  async Register(register: RegisterJugadorDTO) {
+  async Register(register) {
     try {
       const iv = randomBytes(16);
       console.log('IV generado:', iv);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const key = (await promisify(scrypt)(
         register.Contraseña,
         'salt',
@@ -76,5 +82,29 @@ export class AuthService {
       console.error('Error durante el registro:', error);
       throw new Error('Error en el proceso de registro');
     }
+  }
+
+  async desEncriptarToken(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+    const token = this.extractTokenFromHeader(request);
+    if (!token) {
+      throw new HttpException('Token nulo', HttpStatus.UNAUTHORIZED);
+    }
+    try {
+      const payload = await this.jwtService.verifyAsync(token, {
+        secret: jwtConstants.secret,
+      });
+      return payload;
+    } catch {
+      throw new HttpException('Token invalido', HttpStatus.UNAUTHORIZED);
+    }
+  }
+
+  private extractTokenFromHeader(request: Request): string | undefined {
+    const [type, token] = [
+      request.headers.authorization.slice(0, 7),
+      request.headers.authorization.slice(7),
+    ];
+    return type === 'Bearer' ? token : undefined;
   }
 }
