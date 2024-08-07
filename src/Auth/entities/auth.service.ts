@@ -1,14 +1,8 @@
-import {
-  Injectable,
-  ExecutionContext,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Jugador } from 'src/Jugador/Jugador.entity';
 import { JwtService } from '@nestjs/jwt';
-import { Request } from 'express';
 import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
 import { promisify } from 'util';
 import { jwtConstants } from 'src/Auth/entities/constant';
@@ -84,9 +78,7 @@ export class AuthService {
     }
   }
 
-  async desEncriptarToken(context: ExecutionContext) {
-    const request = context.switchToHttp().getRequest();
-    const token = this.extractTokenFromHeader(request);
+  async desEncriptarToken(token) {
     if (!token) {
       throw new HttpException('Token nulo', HttpStatus.UNAUTHORIZED);
     }
@@ -96,15 +88,7 @@ export class AuthService {
       });
       return payload;
     } catch {
-      throw new HttpException('Token invalido', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('Token inválido', HttpStatus.UNAUTHORIZED);
     }
-  }
-
-  private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = [
-      request.headers.authorization.slice(0, 7),
-      request.headers.authorization.slice(7),
-    ];
-    return type === 'Bearer' ? token : undefined;
   }
 }

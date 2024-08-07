@@ -1,7 +1,16 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Post,
+  Req,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginJugadorDTO } from '../dto/loginJugadorDTO';
 import { RegisterJugadorDTO } from '../dto/registerJugadorDTO';
+import { Request } from '@nestjs/common';
 
 @Controller('auth')
 export class AuthController {
@@ -18,5 +27,26 @@ export class AuthController {
     {
       return this.authService.Register(registerDto);
     }
+  }
+
+  @Post('Decode')
+  async Decode(@Req() request: Request) {
+    const token = this.extractTokenFromHeader(request);
+    if (!token) {
+      throw new HttpException(
+        'Token no proporcionado',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+    return this.authService.desEncriptarToken(token);
+  }
+
+  private extractTokenFromHeader(request: Request): string | undefined {
+    const authorizationHeader = request.headers['authorization'];
+    if (authorizationHeader) {
+      const [type, token] = authorizationHeader.split(' ');
+      return type === 'Bearer' ? token : undefined;
+    }
+    return undefined;
   }
 }

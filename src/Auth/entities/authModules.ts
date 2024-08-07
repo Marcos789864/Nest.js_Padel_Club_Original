@@ -12,7 +12,7 @@ import { Jugador } from 'src/Jugador/Jugador.entity';
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1m' },
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   providers: [AuthService],
