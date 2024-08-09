@@ -1,34 +1,33 @@
 import {
-    Body,
-    Controller,
-    Get,
-    Post,
-    Patch,
-    Param,
-    ParseIntPipe,
-  } from '@nestjs/common';
-  import { NotificacionesService } from './Notificaciones.services';
-  import { NotificacionesDto } from './dto/NotificacionesDto';
-  
-  @Controller('Notificaciones')
-  export class NotificacionesController {
-    constructor(private notificacionesService: NotificacionesService) {}
-  
-    @Get()
-    async ObtnerNotificaciones() {
-      return this.notificacionesService.GetNotificaciones();
-    }
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  ParseIntPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { NotificacionesService } from './Notificaciones.services';
+import { NotificacionesDto } from './dto/NotificacionesDto';
+import { AuthGuard } from 'src/auth.guard';
 
-    @Get(':id')
-    async ObtenerNotificacion(@Param('id', ParseIntPipe) id: number)
-    {
-        return this.notificacionesService.GetNotificacion(id);
-    }
+@Controller('Notificaciones')
+export class NotificacionesController {
+  constructor(private notificacionesService: NotificacionesService) {}
 
-    @Post()
-    async CrearNotificacion(@Body() signInDto: NotificacionesDto){
-        return this.notificacionesService.Create(signInDto);
-    }
-   
+  @UseGuards(AuthGuard)
+  @Get()
+  async ObtnerNotificaciones() {
+    return this.notificacionesService.GetNotificaciones();
+  }
+  @UseGuards(AuthGuard)
+  @Get(':id')
+  async ObtenerNotificacion(@Param('id', ParseIntPipe) id: number) {
+    return this.notificacionesService.GetNotificacion(id);
+  }
+  @UseGuards(AuthGuard)
+  @Post()
+  async CrearNotificacion(@Body() signInDto: NotificacionesDto) {
+    return this.notificacionesService.Create(signInDto);
+  }
 }
-  

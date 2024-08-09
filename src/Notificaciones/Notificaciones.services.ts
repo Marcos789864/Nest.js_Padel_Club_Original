@@ -22,7 +22,7 @@ export class NotificacionesService {
 
   GetNotificacion(id)
   {
-    return this.notificacionesRepository.findOne({
+    return this.notificacionesRepository.find({
         where: {
           idR: id,
         },
