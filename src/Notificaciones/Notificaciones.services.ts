@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { NotificacionesDto } from './dto/NotificacionesDto';
 import { Notificaciones } from './Notificaciones.entity';
 
 @Injectable()
@@ -20,15 +19,11 @@ export class NotificacionesService {
     return this.notificacionesRepository.find();
   }
 
-  GetNotificacion(id)
-  {
+  GetNotificacion(id) {
     return this.notificacionesRepository.find({
-        where: {
-          idR: id,
-        },
-      })
+      where: {
+        idR: id,
+      },
+    });
   }
-
-  
 }
-  

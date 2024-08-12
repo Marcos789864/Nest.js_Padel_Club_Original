@@ -6,7 +6,7 @@ export class NotificacionesDto {
   Mensaje: string;
   @IsNotEmpty()
   @IsNumber()
-  idE:number ;
+  idE: number;
   @IsNumber()
   @IsNotEmpty()
   idR: number;
@@ -20,7 +20,6 @@ export class NotificacionesDto {
     Tipo.tipo6,
     Tipo.tipo7,
     Tipo.tipo8,
-    Tipo.tipo9,
   ])
   Tipo: Tipo;
 }
