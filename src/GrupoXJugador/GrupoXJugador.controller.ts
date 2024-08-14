@@ -49,4 +49,16 @@ export class GrupoXJugadorController {
       );
     }
   }
+  @Patch(':id')
+  async ActualizarGrupoJugadores(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() grupoXJugador: GrupoXJugadorUpdateDto,
+  ) {
+    try {
+      await this.GrupoXjugadorService.UpdateGrupoXJugador(id, grupoXJugador);
+      return { message: 'Grupo actualizado exitosamente' };
+    } catch (error) {
+      throw new BadRequestException('Error al actualizar el grupo');
+    }
+  }
 }
