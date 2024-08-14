@@ -43,11 +43,4 @@ export class GrupoXJugadorService {
 
     return { idGrupo: jugadorXGrupo, jugadores };
   }
-
-  async ActualizarGrupoJugadores(
-    idGrupo: number,
-    GrupoXJugador: GrupoXJugadorUpdateDto,
-  ) {
-    this.GrupoXJugadorRepository.update({ idGrupo }, GrupoXJugador);
-  }
 }

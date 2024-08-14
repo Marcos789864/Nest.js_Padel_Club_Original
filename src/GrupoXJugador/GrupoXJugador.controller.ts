@@ -37,8 +37,10 @@ export class GrupoXJugadorController {
   @Get(':idGrupo')
   async getGrupoJugadores(@Param('idGrupo', ParseIntPipe) idGrupo: number) {
     try {
-      const { grupo, jugadores } =
+      const { idGrupo: grupo, jugadores } =
         await this.GrupoXjugadorService.getGrupoJugadores(idGrupo);
+
+      // Devuelve las propiedades correctas
       return { grupo, jugadores };
     } catch (error) {
       if (error instanceof NotFoundException) {
@@ -47,18 +49,6 @@ export class GrupoXJugadorController {
       throw new BadRequestException(
         'Error al obtener el registro de JugadorXGrupo',
       );
-    }
-  }
-  @Patch(':id')
-  async ActualizarGrupoJugadores(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() grupoXJugador: GrupoXJugadorUpdateDto,
-  ) {
-    try {
-      await this.GrupoXjugadorService.UpdateGrupoXJugador(id, grupoXJugador);
-      return { message: 'Grupo actualizado exitosamente' };
-    } catch (error) {
-      throw new BadRequestException('Error al actualizar el grupo');
     }
   }
 }
