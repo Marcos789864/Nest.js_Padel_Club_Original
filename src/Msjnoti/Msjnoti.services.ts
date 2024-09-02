@@ -1,26 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Msj } from './Msjnoti.entity';
+import { Msjnoti } from './Msjnoti.entity';
+import { MsjnotiDto } from './dto/Msjnoti.dto';
+
 
 @Injectable()
-export class AmigoService {
+export class MsjnotiService {
   constructor(
-    @InjectRepository(Msj) private amigosRepository: Repository<Msj>,
+    @InjectRepository(Msjnoti) private MsjnotiRepository: Repository<Msjnoti>,
   ) {}
 
-  Create(Jugador: AmigosDto) {
-    const newAmigo = this.amigosRepository.create(Jugador);
-    return this.amigosRepository.save(newAmigo);
+  Create(Msjnoti: MsjnotiDto) {
+    const newNoti = this.MsjnotiRepository.create(Msjnoti);
+    return this.MsjnotiRepository.save(newNoti);
   }
 
-  GetJugadores() {
-    return this.amigosRepository.find();
-  }
-
-  GetAmigosJugador(id: number) {
-    return this.amigosRepository.find({
-      where: [{ id1: id }, { id2: id }],
+  GetNotificacionesJugador(id: number) {
+    return this.MsjnotiRepository.find({
+      where: [{ idR: id }],
     });
   }
 }

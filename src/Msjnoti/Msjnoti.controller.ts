@@ -9,26 +9,24 @@ import {
 } from '@nestjs/common';
 
 import { AuthGuard } from 'src/auth.guard';
+import { MsjnotiService } from './Msjnoti.services';
+import { MsjnotiDto} from './dto/Msjnoti.dto';
 
 @Controller('Msjnoti')
-export class AmigosController {
-constructor(private amigoService: AmigoService) {}
+export class MsjnotiController {
+constructor(private msjnotiService: MsjnotiService) {}
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() createAmistadDto: AmigosDto) {
-    return this.amigoService.Create(createAmistadDto);
+  async create(@Body() createMsjnoti: MsjnotiDto) {
+    return this.msjnotiService.Create(createMsjnoti);
   }
-  @UseGuards(AuthGuard)
-  @Get()
-  async BuscarJugador() {
-    return this.amigoService.GetJugadores();
-  }
+
 
   @UseGuards(AuthGuard)
   @Get(':idJugador')
   async BuscarAmigosJugador(
     @Param('idJugador', ParseIntPipe) idJugador: number,
   ) {
-    return this.amigoService.GetAmigosJugador(idJugador);
+    return this.msjnotiService.GetNotificacionesJugador(idJugador);
   }
 }
