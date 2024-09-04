@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
   Post,
+  Get,
   Req,
 } from '@nestjs/common';
 import { AuthService } from './auth.services';
@@ -48,5 +49,9 @@ export class AuthController {
       return type === 'Bearer' ? token : undefined;
     }
     return undefined;
+  }
+  @Get('H')
+  async H() {
+    return 'H';
   }
 }
