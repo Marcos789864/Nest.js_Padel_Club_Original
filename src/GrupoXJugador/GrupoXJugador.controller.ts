@@ -10,7 +10,7 @@ import {
   Patch,
 } from '@nestjs/common';
 import { GrupoXJugadorDto } from './dto/GrupoXJugador.dto';
-import { GrupoXJugadorService } from './GrupoXJugador.service';
+import { GrupoXJugadorService } from './GrupoXJugador.services';
 import { GrupoXJugadorUpdateDto } from './dto/GrupoXJugadorUpdate.dto';
 @Controller('GrupoXJugador')
 export class GrupoXJugadorController {

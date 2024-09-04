@@ -6,9 +6,8 @@ import {
   HttpStatus,
   Post,
   Req,
-  Get,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.services';
 import { LoginJugadorDTO } from '../dto/loginJugadorDTO';
 import { RegisterJugadorDTO } from '../dto/registerJugadorDTO';
 import { Request } from '@nestjs/common';
@@ -49,10 +48,5 @@ export class AuthController {
       return type === 'Bearer' ? token : undefined;
     }
     return undefined;
-  }
-
-  @Get('H')
-  async H() {
-    return 'H';
   }
 }

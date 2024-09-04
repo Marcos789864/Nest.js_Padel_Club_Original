@@ -3,7 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
 import { jwtConstants } from './constant';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.services';
 import { Jugador } from 'src/Jugador/Jugador.entity';
 
 @Module({
