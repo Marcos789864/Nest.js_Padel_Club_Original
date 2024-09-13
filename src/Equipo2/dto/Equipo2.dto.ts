@@ -1,9 +1,10 @@
 import { IsNotEmpty, IsNumber } from 'class-validator';
-export class GrupoXJugadorDto {
+export class Equipo2Dto {
   @IsNotEmpty()
   @IsNumber()
-  idEquipo1: number;
-  @IsNotEmpty()
+  id3: number = 0;
   @IsNumber()
-  idEquipo2: number;
+  id4: number = 0;
+  @IsNumber()
+  idGrupo: number;
 }

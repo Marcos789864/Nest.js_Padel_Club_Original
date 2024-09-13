@@ -13,7 +13,10 @@ import { NotificacionesModule } from './Notificaciones/Notificaciones.modules';
 import { AuthModule } from './Auth/entities/authModules';
 import { PartidoModules } from './Partido/Partido.modules';
 import { Partido } from './Partido/Partido.entity';
-
+import { Equipo1 } from './Equipo1/Equipo1.entity';
+import { Equipo1Modules } from './Equipo1/Equipo1.modules';
+import { Equipo2 } from './Equipo2/Equipo2.entity';
+import { Equipo2Modules } from './Equipo2/Equipo2.modules';
 @Module({
   imports: [
     JugadorModule,
@@ -22,6 +25,8 @@ import { Partido } from './Partido/Partido.entity';
     AuthModule,
     NotificacionesModule,
     PartidoModules,
+    Equipo1Modules,
+    Equipo2Modules,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -29,7 +34,15 @@ import { Partido } from './Partido/Partido.entity';
       username: 'postgres',
       password: 'root',
       database: 'postgres',
-      entities: [Jugador, GrupoXJugador, Amigos, Notificaciones, Partido],
+      entities: [
+        Jugador,
+        GrupoXJugador,
+        Amigos,
+        Notificaciones,
+        Partido,
+        Equipo1,
+        Equipo2,
+      ],
       synchronize: true,
     }),
   ],

@@ -20,13 +20,19 @@ export class PartidoController {
     return this.partidoService.CreatePartido(createPartidoDto);
   }
 
-  @Get(':idGrupo')
-  async getGrupoJugadores(@Param('idGrupo', ParseIntPipe) idGrupo: number) {
+  @Get(':idEquipo1/:idEquipo2')
+  async getGrupoJugadores(
+    @Param('idEquipo1', ParseIntPipe) idEquipo1: number,
+    @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
+  ) {
     try {
-      const { idGrupo: grupo, jugadores } =
-        await this.partidoService.getGrupoJugadores(idGrupo);
+      // Utiliza ambos parámetros para obtener la información necesaria
+      const { jugadores } = await this.partidoService.getGrupoJugadores(
+        idEquipo1,
+        idEquipo2,
+      );
 
-      return { grupo, jugadores };
+      return { jugadores };
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw new BadRequestException(error.message);
