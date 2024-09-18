@@ -2,10 +2,7 @@ import { IsNotEmpty, IsNumber } from 'class-validator';
 export class PartidoDto {
   @IsNotEmpty()
   @IsNumber()
-  idEquipo1: number;
-  @IsNotEmpty()
-  @IsNumber()
-  idEquipo2: number;
+  idGrupo: number;
   @IsNotEmpty()
   @IsNumber()
   puntos: number;

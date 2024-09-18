@@ -11,7 +11,7 @@ import {
 import { PartidoDto } from './dto/PartidoDto';
 import { PartidoService } from './Partido.service';
 
-@Controller('GrupoXJugador')
+@Controller('Partido')
 export class PartidoController {
   constructor(private partidoService: PartidoService) {}
 

@@ -23,4 +23,4 @@ Abrir el cmd, y poner cd .. hasta que la ruta te quede en el disco C
 Una vez en el disco C pones cd y empezas a tocar el tab hasta que aparezca ngrok-v3-stable-windows-amd64
 Apretas enter y despues escribis ngrok update, esperas a que se actulice
 Una vez actualizado, vas a ir a google y vas a iniciar sesion en la pagina de Ngrok
-Una vez iniciado 
+Una vez iniciado creas un dominio estatico, volves a la pantalla principal y 
