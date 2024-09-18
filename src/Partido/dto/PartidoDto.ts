@@ -5,7 +5,13 @@ export class PartidoDto {
   idGrupo: number;
   @IsNotEmpty()
   @IsNumber()
-  puntos: number;
+  set1: string;
+  @IsNotEmpty()
+  @IsNumber()
+  set2: string;
+  @IsNotEmpty()
+  @IsNumber()
+  set3: string;
   @IsNotEmpty()
   @IsNumber()
   fecha: Date;
