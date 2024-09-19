@@ -6,13 +6,17 @@ export class PartidoDto {
   @IsNotEmpty()
   @IsNumber()
   set1: string;
-  @IsNotEmpty()
   @IsNumber()
   set2: string;
-  @IsNotEmpty()
   @IsNumber()
   set3: string;
   @IsNotEmpty()
   @IsNumber()
   fecha: Date;
+  @IsNotEmpty()
+  @IsNumber()
+  puntajeEquipo1: number;
+  @IsNotEmpty()
+  @IsNumber()
+  puntajeEquipo2: number;
 }
