@@ -17,6 +17,7 @@ import { Equipo1 } from './Equipo1/Equipo1.entity';
 import { Equipo1Modules } from './Equipo1/Equipo1.modules';
 import { Equipo2 } from './Equipo2/Equipo2.entity';
 import { Equipo2Modules } from './Equipo2/Equipo2.modules';
+
 @Module({
   imports: [
     JugadorModule,

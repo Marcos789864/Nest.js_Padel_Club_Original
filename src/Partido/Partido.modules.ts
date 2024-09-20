@@ -20,5 +20,6 @@ import { Equipo2 } from 'src/Equipo2/Equipo2.entity';
   ],
   providers: [PartidoService],
   controllers: [PartidoController],
+  exports: [PartidoService],
 })
 export class PartidoModules {}

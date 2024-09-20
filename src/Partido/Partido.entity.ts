@@ -8,7 +8,15 @@ export class Partido {
   @Column()
   idGrupo: number;
   @Column()
-  puntos: number;
+  set1: string;
+  @Column()
+  set2: string;
+  @Column()
+  set3: string;
   @Column()
   fecha: Date;
+  @Column()
+  puntajeEquipo1: number;
+  @Column()
+  puntajeEquipo2: number;
 }

@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { Msjnoti } from './Msjnoti.entity';
 import { MsjnotiDto } from './dto/Msjnoti.dto';
 
-
 @Injectable()
 export class MsjnotiService {
   constructor(

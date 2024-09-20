@@ -17,7 +17,16 @@ export class PartidoController {
 
   @Post()
   async create(@Body() createPartidoDto: PartidoDto) {
-    return this.partidoService.CreatePartido(createPartidoDto);
+    try {
+      console.log('Solicitud recibida:', createPartidoDto);
+
+      const resultado =
+        await this.partidoService.CreatePartido(createPartidoDto);
+      return { mensaje: 'Partido creado correctamente', partido: resultado };
+    } catch (error) {
+      console.error('Error al crear el partido:', error);
+      throw new Error('Error al crear el partido');
+    }
   }
 
   @Get(':idEquipo1/:idEquipo2')

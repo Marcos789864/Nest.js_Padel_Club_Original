@@ -23,9 +23,16 @@ export class PartidoService {
     private Equipo2Repository: Repository<Equipo2>,
   ) {}
 
-  CreatePartido(Partido: PartidoDto) {
-    const newJugador = this.PartidoRepository.create(Partido);
-    return this.GrupoXJugadorRepository.save(newJugador);
+  async CreatePartido(Partido: PartidoDto) {
+    try {
+      const newPartido = this.PartidoRepository.create(Partido);
+      console.log('Partido creado con éxito:', newPartido);
+
+      return await this.PartidoRepository.save(newPartido); // Guarda el partido en la base de datos
+    } catch (error) {
+      console.error('Error al crear el partido:', error);
+      throw new Error('Error al crear el partido');
+    }
   }
 
   async getGrupoJugadores(idEquipo1: number, idEquipo2: number) {

@@ -1,21 +1,30 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+
 export class PartidoDto {
   @IsNotEmpty()
   @IsNumber()
   idGrupo: number;
+
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   set1: string;
-  @IsNumber()
+
+  @IsString()
   set2: string;
-  @IsNumber()
+
+  @IsString()
   set3: string;
+
   @IsNotEmpty()
-  @IsNumber()
+  @IsDate()
+  @Type(() => Date)
   fecha: Date;
+
   @IsNotEmpty()
   @IsNumber()
   puntajeEquipo1: number;
+
   @IsNotEmpty()
   @IsNumber()
   puntajeEquipo2: number;
