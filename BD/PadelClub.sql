@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-09-13 12:12:24
+-- Started on 2024-09-20 12:11:36
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -110,7 +110,7 @@ ALTER SEQUENCE public."amigos_idAmistad_seq" OWNED BY public.amigos."idAmistad";
 
 
 --
--- TOC entry 229 (class 1259 OID 16468)
+-- TOC entry 220 (class 1259 OID 16408)
 -- Name: equipo1; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -124,7 +124,7 @@ CREATE TABLE public.equipo1 (
 ALTER TABLE public.equipo1 OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 16467)
+-- TOC entry 221 (class 1259 OID 16411)
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -141,7 +141,7 @@ ALTER SEQUENCE public."equipo1_idEquipo1_seq" OWNER TO postgres;
 
 --
 -- TOC entry 4860 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 221
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -149,7 +149,7 @@ ALTER SEQUENCE public."equipo1_idEquipo1_seq" OWNED BY public.equipo1."idEquipo1
 
 
 --
--- TOC entry 231 (class 1259 OID 16475)
+-- TOC entry 222 (class 1259 OID 16412)
 -- Name: equipo2; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -163,7 +163,7 @@ CREATE TABLE public.equipo2 (
 ALTER TABLE public.equipo2 OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 16474)
+-- TOC entry 223 (class 1259 OID 16415)
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -180,7 +180,7 @@ ALTER SEQUENCE public."equipo2_idEquipo2_seq" OWNER TO postgres;
 
 --
 -- TOC entry 4861 (class 0 OID 0)
--- Dependencies: 230
+-- Dependencies: 223
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -188,7 +188,7 @@ ALTER SEQUENCE public."equipo2_idEquipo2_seq" OWNED BY public.equipo2."idEquipo2
 
 
 --
--- TOC entry 227 (class 1259 OID 16461)
+-- TOC entry 224 (class 1259 OID 16416)
 -- Name: grupo_x_jugador; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -202,7 +202,7 @@ CREATE TABLE public.grupo_x_jugador (
 ALTER TABLE public.grupo_x_jugador OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 16460)
+-- TOC entry 225 (class 1259 OID 16419)
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -219,7 +219,7 @@ ALTER SEQUENCE public."grupo_x_jugador_idGrupo_seq" OWNER TO postgres;
 
 --
 -- TOC entry 4862 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 225
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -227,7 +227,7 @@ ALTER SEQUENCE public."grupo_x_jugador_idGrupo_seq" OWNED BY public.grupo_x_juga
 
 
 --
--- TOC entry 220 (class 1259 OID 16412)
+-- TOC entry 226 (class 1259 OID 16420)
 -- Name: jugador; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -247,7 +247,7 @@ CREATE TABLE public.jugador (
 ALTER TABLE public.jugador OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 16417)
+-- TOC entry 227 (class 1259 OID 16425)
 -- Name: jugador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -262,7 +262,7 @@ ALTER TABLE public.jugador ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- TOC entry 222 (class 1259 OID 16418)
+-- TOC entry 228 (class 1259 OID 16426)
 -- Name: notificaciones; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -278,7 +278,7 @@ CREATE TABLE public.notificaciones (
 ALTER TABLE public.notificaciones OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 16423)
+-- TOC entry 229 (class 1259 OID 16431)
 -- Name: notificaciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -295,7 +295,7 @@ ALTER SEQUENCE public.notificaciones_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 4863 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 229
 -- Name: notificaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -303,22 +303,26 @@ ALTER SEQUENCE public.notificaciones_id_seq OWNED BY public.notificaciones.id;
 
 
 --
--- TOC entry 224 (class 1259 OID 16424)
+-- TOC entry 230 (class 1259 OID 16467)
 -- Name: partido; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.partido (
     "idPartido" integer NOT NULL,
     "idGrupo" integer NOT NULL,
-    puntos integer NOT NULL,
-    fecha timestamp without time zone NOT NULL
+    set1 character varying NOT NULL,
+    set2 character varying NOT NULL,
+    set3 character varying NOT NULL,
+    fecha timestamp without time zone NOT NULL,
+    "puntajeEquipo1" integer NOT NULL,
+    "puntajeEquipo2" integer NOT NULL
 );
 
 
 ALTER TABLE public.partido OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 16427)
+-- TOC entry 231 (class 1259 OID 16470)
 -- Name: partido_idPartido_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -335,7 +339,7 @@ ALTER SEQUENCE public."partido_idPartido_seq" OWNER TO postgres;
 
 --
 -- TOC entry 4864 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 231
 -- Name: partido_idPartido_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -343,7 +347,7 @@ ALTER SEQUENCE public."partido_idPartido_seq" OWNED BY public.partido."idPartido
 
 
 --
--- TOC entry 4670 (class 2604 OID 16428)
+-- TOC entry 4670 (class 2604 OID 16436)
 -- Name: amigos idAmistad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -351,7 +355,7 @@ ALTER TABLE ONLY public.amigos ALTER COLUMN "idAmistad" SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4674 (class 2604 OID 16471)
+-- TOC entry 4671 (class 2604 OID 16437)
 -- Name: equipo1 idEquipo1; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -359,7 +363,7 @@ ALTER TABLE ONLY public.equipo1 ALTER COLUMN "idEquipo1" SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4675 (class 2604 OID 16478)
+-- TOC entry 4672 (class 2604 OID 16438)
 -- Name: equipo2 idEquipo2; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -367,7 +371,7 @@ ALTER TABLE ONLY public.equipo2 ALTER COLUMN "idEquipo2" SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4673 (class 2604 OID 16464)
+-- TOC entry 4673 (class 2604 OID 16439)
 -- Name: grupo_x_jugador idGrupo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -375,7 +379,7 @@ ALTER TABLE ONLY public.grupo_x_jugador ALTER COLUMN "idGrupo" SET DEFAULT nextv
 
 
 --
--- TOC entry 4671 (class 2604 OID 16430)
+-- TOC entry 4674 (class 2604 OID 16440)
 -- Name: notificaciones id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -383,7 +387,7 @@ ALTER TABLE ONLY public.notificaciones ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4672 (class 2604 OID 16431)
+-- TOC entry 4675 (class 2604 OID 16471)
 -- Name: partido idPartido; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -410,43 +414,45 @@ INSERT INTO public.amigos VALUES (3, 1, 4);
 
 
 --
--- TOC entry 4850 (class 0 OID 16468)
--- Dependencies: 229
+-- TOC entry 4841 (class 0 OID 16408)
+-- Dependencies: 220
 -- Data for Name: equipo1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.equipo1 VALUES (1, 29, 0);
 INSERT INTO public.equipo1 VALUES (2, 29, 0);
+INSERT INTO public.equipo1 VALUES (3, 29, 1);
 
 
 --
--- TOC entry 4852 (class 0 OID 16475)
--- Dependencies: 231
+-- TOC entry 4843 (class 0 OID 16412)
+-- Dependencies: 222
 -- Data for Name: equipo2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.equipo2 VALUES (1, 0, 0);
 INSERT INTO public.equipo2 VALUES (2, 0, 0);
+INSERT INTO public.equipo2 VALUES (3, 2, 3);
 
 
 --
--- TOC entry 4848 (class 0 OID 16461)
--- Dependencies: 227
+-- TOC entry 4845 (class 0 OID 16416)
+-- Dependencies: 224
 -- Data for Name: grupo_x_jugador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.grupo_x_jugador VALUES (1, 1, 1);
 INSERT INTO public.grupo_x_jugador VALUES (2, 2, 2);
+INSERT INTO public.grupo_x_jugador VALUES (3, 3, 3);
 
 
 --
--- TOC entry 4841 (class 0 OID 16412)
--- Dependencies: 220
+-- TOC entry 4847 (class 0 OID 16420)
+-- Dependencies: 226
 -- Data for Name: jugador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (1, 1000, 'Flor', 'Flor@Gmail.com', 'Flor', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (2, 1000, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h');
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (3, 1000, 'Hugo', 'Hugo@Gmail.com', 'Hugo', 'Bronce I', '', 'Hebraica', 'h');
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (4, 1000, 'Violeta', 'Violeta@Gmail.com', 'Violeta', 'Bronce I', '', 'Hebraica', 'h');
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (5, 1000, 'Bru', 'Bruno@Gmail.com', 'Bruno', 'Bronce I', '', 'Hebraica', 'h');
@@ -458,11 +464,12 @@ INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (27, 1000, '�L��
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (28, 1000, 'f4a724f4969c73cd5d68f1', 'Marto@Gmail.com', 'Marto', 'Bronce I', '', 'Hebraica', '8202ef20735fbb73b32f37c00a9074a7');
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (29, 1000, '97dd35695dfcbb', 'ñoño@gmail.com', 'ñoño', 'Bronce I', '', 'Hebraica', 'd6e05064177db80bc5b74cc39e0bb85f');
 INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (30, 1000, 'b5e09c309f', 'jose@gmail.com', 'jose', 'Bronce I', '', 'Hebraica', '5bbdef7fec9b3c094c221d6359387158');
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (2, 900, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h');
 
 
 --
--- TOC entry 4843 (class 0 OID 16418)
--- Dependencies: 222
+-- TOC entry 4849 (class 0 OID 16426)
+-- Dependencies: 228
 -- Data for Name: notificaciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -471,11 +478,48 @@ INSERT INTO public.notificaciones VALUES (4, 'Invitacion_Partido', 1, 29, 'Hola'
 
 
 --
--- TOC entry 4845 (class 0 OID 16424)
--- Dependencies: 224
+-- TOC entry 4851 (class 0 OID 16467)
+-- Dependencies: 230
 -- Data for Name: partido; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.partido VALUES (1, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:15:20.334', 2, 1);
+INSERT INTO public.partido VALUES (2, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:29:04.156', 2, 1);
+INSERT INTO public.partido VALUES (3, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:32:57.295', 2, 1);
+INSERT INTO public.partido VALUES (4, 3, '6 - 7', '6 - 7', '7 - 6', '2024-09-20 10:33:26.782', 1, 2);
+INSERT INTO public.partido VALUES (5, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:41:33.292', 2, 1);
+INSERT INTO public.partido VALUES (6, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 10:43:23.568', 0, 3);
+INSERT INTO public.partido VALUES (7, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:44:27.917', 3, 0);
+INSERT INTO public.partido VALUES (8, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:45:06.947', 3, 0);
+INSERT INTO public.partido VALUES (9, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:50:17.77', 2, 1);
+INSERT INTO public.partido VALUES (10, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:41.42', 2, 1);
+INSERT INTO public.partido VALUES (11, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:45.82', 2, 1);
+INSERT INTO public.partido VALUES (12, 3, '7 - 6', '7 - 6', '', '2024-09-20 11:00:54.428', 2, 0);
+INSERT INTO public.partido VALUES (13, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:22:36.02', 2, 1);
+INSERT INTO public.partido VALUES (14, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:08.468', 2, 1);
+INSERT INTO public.partido VALUES (15, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:24.323', 2, 1);
+INSERT INTO public.partido VALUES (16, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:25:30.329', 2, 1);
+INSERT INTO public.partido VALUES (17, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:26:38.884', 2, 1);
+INSERT INTO public.partido VALUES (18, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:28:10.268', 2, 1);
+INSERT INTO public.partido VALUES (19, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:35:45.581', 2, 1);
+INSERT INTO public.partido VALUES (20, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:37:27.394', 2, 1);
+INSERT INTO public.partido VALUES (21, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:38:21.336', 2, 1);
+INSERT INTO public.partido VALUES (22, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:39:29.575', 1, 2);
+INSERT INTO public.partido VALUES (23, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:40:40.096', 0, 3);
+INSERT INTO public.partido VALUES (24, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:42:38.62', 0, 3);
+INSERT INTO public.partido VALUES (25, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:45:43.868', 2, 1);
+INSERT INTO public.partido VALUES (26, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:46:18.132', 2, 1);
+INSERT INTO public.partido VALUES (27, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:48:01.208', 2, 1);
+INSERT INTO public.partido VALUES (28, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:48:50.25', 3, 0);
+INSERT INTO public.partido VALUES (29, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:49:31.836', 2, 1);
+INSERT INTO public.partido VALUES (30, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:50:21.381', 2, 1);
+INSERT INTO public.partido VALUES (31, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:50:50.716', 1, 2);
+INSERT INTO public.partido VALUES (32, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:51:08.18', 2, 1);
+INSERT INTO public.partido VALUES (33, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:51:57.787', 3, 0);
+INSERT INTO public.partido VALUES (34, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:52:12.3', 2, 1);
+INSERT INTO public.partido VALUES (35, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:52:37.399', 2, 1);
+INSERT INTO public.partido VALUES (36, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:55:58.031', 2, 1);
+INSERT INTO public.partido VALUES (37, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 12:02:43.525', 2, 1);
 
 
 --
@@ -498,34 +542,34 @@ SELECT pg_catalog.setval('public."amigos_idAmistad_seq"', 3, true);
 
 --
 -- TOC entry 4867 (class 0 OID 0)
--- Dependencies: 228
+-- Dependencies: 221
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 2, true);
+SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 3, true);
 
 
 --
 -- TOC entry 4868 (class 0 OID 0)
--- Dependencies: 230
+-- Dependencies: 223
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 2, true);
+SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 3, true);
 
 
 --
 -- TOC entry 4869 (class 0 OID 0)
--- Dependencies: 226
+-- Dependencies: 225
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 2, true);
+SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 3, true);
 
 
 --
 -- TOC entry 4870 (class 0 OID 0)
--- Dependencies: 221
+-- Dependencies: 227
 -- Name: jugador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -534,7 +578,7 @@ SELECT pg_catalog.setval('public.jugador_id_seq', 30, true);
 
 --
 -- TOC entry 4871 (class 0 OID 0)
--- Dependencies: 223
+-- Dependencies: 229
 -- Name: notificaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -543,15 +587,15 @@ SELECT pg_catalog.setval('public.notificaciones_id_seq', 4, true);
 
 --
 -- TOC entry 4872 (class 0 OID 0)
--- Dependencies: 225
+-- Dependencies: 231
 -- Name: partido_idPartido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."partido_idPartido_seq"', 1, false);
+SELECT pg_catalog.setval('public."partido_idPartido_seq"', 37, true);
 
 
 --
--- TOC entry 4689 (class 2606 OID 16466)
+-- TOC entry 4683 (class 2606 OID 16443)
 -- Name: grupo_x_jugador PK_1962cc6e9effc58f1fade679eaf; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -560,7 +604,7 @@ ALTER TABLE ONLY public.grupo_x_jugador
 
 
 --
--- TOC entry 4679 (class 2606 OID 16435)
+-- TOC entry 4685 (class 2606 OID 16445)
 -- Name: jugador PK_1ab9b28fb3c4e9135da05f1cc3c; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -569,7 +613,7 @@ ALTER TABLE ONLY public.jugador
 
 
 --
--- TOC entry 4677 (class 2606 OID 16437)
+-- TOC entry 4677 (class 2606 OID 16447)
 -- Name: amigos PK_61bcc12cbbe12c27ab9611d1b60; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -578,7 +622,7 @@ ALTER TABLE ONLY public.amigos
 
 
 --
--- TOC entry 4693 (class 2606 OID 16480)
+-- TOC entry 4681 (class 2606 OID 16449)
 -- Name: equipo2 PK_65b181020d538b823957a67e948; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -587,7 +631,7 @@ ALTER TABLE ONLY public.equipo2
 
 
 --
--- TOC entry 4685 (class 2606 OID 16439)
+-- TOC entry 4691 (class 2606 OID 16451)
 -- Name: notificaciones PK_a9d32a419ff58b53a38b5ef85d4; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -596,7 +640,7 @@ ALTER TABLE ONLY public.notificaciones
 
 
 --
--- TOC entry 4691 (class 2606 OID 16473)
+-- TOC entry 4679 (class 2606 OID 16453)
 -- Name: equipo1 PK_f33a52307756b62ea258ad1cf05; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -605,7 +649,7 @@ ALTER TABLE ONLY public.equipo1
 
 
 --
--- TOC entry 4687 (class 2606 OID 16441)
+-- TOC entry 4693 (class 2606 OID 16476)
 -- Name: partido PK_fd942ed1d6537675d98bf341973; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -614,7 +658,7 @@ ALTER TABLE ONLY public.partido
 
 
 --
--- TOC entry 4681 (class 2606 OID 16443)
+-- TOC entry 4687 (class 2606 OID 16457)
 -- Name: jugador UQ_59089a3fc738271d4618497c350; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -623,7 +667,7 @@ ALTER TABLE ONLY public.jugador
 
 
 --
--- TOC entry 4683 (class 2606 OID 16445)
+-- TOC entry 4689 (class 2606 OID 16459)
 -- Name: jugador UQ_cf8076b83801050d32b071d7f2e; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -631,7 +675,7 @@ ALTER TABLE ONLY public.jugador
     ADD CONSTRAINT "UQ_cf8076b83801050d32b071d7f2e" UNIQUE ("Nombre");
 
 
--- Completed on 2024-09-13 12:12:24
+-- Completed on 2024-09-20 12:11:36
 
 --
 -- PostgreSQL database dump complete
