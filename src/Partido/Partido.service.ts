@@ -25,7 +25,7 @@ export class PartidoService {
       const newPartido = this.PartidoRepository.create(Partido);
       console.log('Partido creado con éxito:', newPartido);
 
-      return await this.PartidoRepository.save(newPartido); // Guarda el partido en la base de datos
+      return await this.PartidoRepository.save(newPartido);
     } catch (error) {
       console.error('Error al crear el partido:', error);
       throw new Error('Error al crear el partido');
