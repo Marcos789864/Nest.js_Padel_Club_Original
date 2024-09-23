@@ -44,5 +44,5 @@ export class JugadorDto {
   @IsIn([Club.Club1])
   Club: Club;
   @IsString()
-  iv?:string;
+  iv?: string;
 }

@@ -1,12 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum MensajePreCargado {
+  Partido = '¿Este fue el resultado del partido?',
+}
+
 @Entity()
 export class Msjnoti {
   @PrimaryGeneratedColumn()
-  idTipo: number;
+  id;
   @Column()
-  msj: string;
+  tipo: string;
   @Column()
-  idE: number;
-  @Column()
-  idR:number;
+  msj: MensajePreCargado;
 }

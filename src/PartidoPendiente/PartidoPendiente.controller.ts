@@ -8,15 +8,15 @@ import {
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
-import { PartidoDto } from './dto/PartidoPendienteDto';
-import { PartidoService } from './Partido.service';
+import { PartidoPendienteDto } from './dto/PartidoPendienteDto';
+import { PartidoPendienteService } from './PartidoPendiente.service';
 
-@Controller('Partido')
-export class PartidoController {
-  constructor(private partidoService: PartidoService) {}
+@Controller('PartidoPendiente')
+export class PartidoPendienteController {
+  constructor(private partidoService: PartidoPendienteService) {}
 
   @Post()
-  async create(@Body() createPartidoDto: PartidoDto) {
+  async create(@Body() createPartidoDto: PartidoPendienteDto) {
     try {
       console.log('Solicitud recibida:', createPartidoDto);
 
@@ -35,7 +35,6 @@ export class PartidoController {
     @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
   ) {
     try {
-      // Utiliza ambos parámetros para obtener la información necesaria
       const { jugadores } = await this.partidoService.getGrupoJugadores(
         idEquipo1,
         idEquipo2,

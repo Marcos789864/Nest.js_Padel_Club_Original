@@ -1,26 +1,26 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
-import { Partido } from './Partido.entity';
+import { PartidoPendiente } from './PartidoPendiente.entity';
 import { Jugador } from 'src/Jugador/Jugador.entity';
-import { PartidoDto } from './dto/PartidoPendienteDto';
+import { PartidoPendienteDto } from './dto/PartidoPendienteDto';
 import { Equipo1 } from 'src/Equipo1/Equipo1.entity';
 import { Equipo2 } from 'src/Equipo2/Equipo2.entity';
 
 @Injectable()
-export class PartidoService {
+export class PartidoPendienteService {
   constructor(
     @InjectRepository(Jugador)
     private JugadorRepository: Repository<Jugador>,
-    @InjectRepository(Partido)
-    private PartidoRepository: Repository<Partido>,
+    @InjectRepository(PartidoPendiente)
+    private PartidoRepository: Repository<PartidoPendiente>,
     @InjectRepository(Equipo1)
     private Equipo1Repository: Repository<Equipo1>,
     @InjectRepository(Equipo2)
     private Equipo2Repository: Repository<Equipo2>,
   ) {}
 
-  async CreatePartido(Partido: PartidoDto) {
+  async CreatePartido(Partido: PartidoPendienteDto) {
     try {
       const newPartido = this.PartidoRepository.create(Partido);
       console.log('Partido creado con éxito:', newPartido);

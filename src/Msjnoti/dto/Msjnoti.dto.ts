@@ -1,12 +1,10 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsIn, IsString } from 'class-validator';
+import { MensajePreCargado } from '../Msjnoti.entity';
 export class MsjnotiDto {
   @IsNotEmpty()
   @IsString()
-  msj: string;
+  tipo: string;
   @IsNotEmpty()
-  @IsNumber()
-  idE: number
-  @IsNotEmpty()
-  @IsNumber()
-  idR: number
+  @IsIn([MensajePreCargado.Partido])
+  msj: MensajePreCargado;
 }

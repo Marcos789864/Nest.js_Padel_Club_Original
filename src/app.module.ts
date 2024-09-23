@@ -17,6 +17,10 @@ import { Equipo1 } from './Equipo1/Equipo1.entity';
 import { Equipo1Modules } from './Equipo1/Equipo1.modules';
 import { Equipo2 } from './Equipo2/Equipo2.entity';
 import { Equipo2Modules } from './Equipo2/Equipo2.modules';
+import { PartidoPendiente } from './PartidoPendiente/PartidoPendiente.entity';
+import { PartidoPendienteModules } from './PartidoPendiente/PartidoPendiente.modules';
+import { Msjnoti } from './Msjnoti/Msjnoti.entity';
+import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
 
 @Module({
   imports: [
@@ -28,6 +32,8 @@ import { Equipo2Modules } from './Equipo2/Equipo2.modules';
     PartidoModules,
     Equipo1Modules,
     Equipo2Modules,
+    PartidoPendiente,
+    Msjnoti,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -43,6 +49,8 @@ import { Equipo2Modules } from './Equipo2/Equipo2.modules';
         Partido,
         Equipo1,
         Equipo2,
+        PartidoPendienteModules,
+        MsjnotiModule,
       ],
       synchronize: true,
     }),

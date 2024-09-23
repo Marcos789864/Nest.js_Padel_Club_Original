@@ -14,10 +14,4 @@ export class MsjnotiService {
     const newNoti = this.MsjnotiRepository.create(Msjnoti);
     return this.MsjnotiRepository.save(newNoti);
   }
-
-  GetNotificacionesJugador(id: number) {
-    return this.MsjnotiRepository.find({
-      where: [{ idR: id }],
-    });
-  }
 }
