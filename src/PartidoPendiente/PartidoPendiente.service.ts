@@ -56,4 +56,12 @@ export class PartidoPendienteService {
 
     return { idEquipo1: jugadorEquipo1, idEquipo2: jugadorEquipo2, jugadores };
   }
+  async GetPartidoByIdGrupo(idGrupo: number) {
+    {
+      const Partido = await this.PartidoRepository.findOne({
+        where: { idGrupo },
+      });
+      return Partido;
+    }
+  }
 }

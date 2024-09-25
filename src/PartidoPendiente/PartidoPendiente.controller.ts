@@ -29,6 +29,17 @@ export class PartidoPendienteController {
     }
   }
 
+  @Get(':idGrupo')
+  async GetPartidoByIdGrupo(@Param() idGrupo: number) {
+    try {
+      const result = await this.partidoService.GetPartidoByIdGrupo(idGrupo);
+      return result;
+    } catch (error) {
+      console.error('Error al crear el partido:', error);
+      throw new Error('Error al crear el partido');
+    }
+  }
+
   @Get(':idEquipo1/:idEquipo2')
   async getGrupoJugadores(
     @Param('idEquipo1', ParseIntPipe) idEquipo1: number,

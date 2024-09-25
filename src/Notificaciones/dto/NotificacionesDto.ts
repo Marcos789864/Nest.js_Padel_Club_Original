@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, IsIn } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsIn, IsEmpty } from 'class-validator';
 import { Tipo } from '../Notificaciones.entity';
 export class NotificacionesDto {
   @IsNotEmpty()
@@ -22,4 +22,7 @@ export class NotificacionesDto {
     Tipo.tipo8,
   ])
   Tipo: Tipo;
+  @IsNumber()
+  @IsEmpty()
+  idGrupo: number;
 }
