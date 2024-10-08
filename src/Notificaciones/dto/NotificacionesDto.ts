@@ -24,5 +24,5 @@ export class NotificacionesDto {
   Tipo: Tipo;
   @IsNumber()
   @IsEmpty()
-  idGrupo: number;
+  idGrupo?: number;
 }
