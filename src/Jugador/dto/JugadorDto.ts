@@ -18,24 +18,16 @@ export class JugadorDto {
   idPartido?: number;
   @IsNotEmpty()
   @IsIn([
-    RangoJugador.Bronce1,
-    RangoJugador.Bronce2,
-    RangoJugador.Bronce3,
-    RangoJugador.Plata1,
-    RangoJugador.Plata2,
-    RangoJugador.Plata3,
-    RangoJugador.Oro1,
-    RangoJugador.Oro2,
-    RangoJugador.Oro3,
-    RangoJugador.Diamante1,
-    RangoJugador.Diamante2,
-    RangoJugador.Diamante3,
-    RangoJugador.Rubi1,
-    RangoJugador.Rubi2,
-    RangoJugador.Rubi3,
-    RangoJugador.Campeon,
+    RangoJugador.Octava,
+    RangoJugador.Septima,
+    RangoJugador.Sexta,
+    RangoJugador.Quinta,
+    RangoJugador.Cuarta,
+    RangoJugador.Tercera,
+    RangoJugador.Segunda,
+    RangoJugador.Primera,
   ])
-  Rango: RangoJugador.Bronce1;
+  Rango: RangoJugador.Octava;
   @IsNumber()
   IdGrupo?: number;
   @IsString()
