@@ -1,22 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum RangoJugador {
-  Bronce1 = 'Bronce I',
-  Bronce2 = 'Bronce II',
-  Bronce3 = 'Bronce III',
-  Plata1 = 'Plata I',
-  Plata2 = 'Plata II',
-  Plata3 = 'Plata III',
-  Oro1 = 'Oro I',
-  Oro2 = 'Oro II',
-  Oro3 = 'Oro III',
-  Diamante1 = 'Diamante i',
-  Diamante2 = 'Diamante ii',
-  Diamante3 = 'Diamante iii',
-  Rubi1 = 'Rubi I',
-  Rubi2 = 'Rubi II',
-  Rubi3 = 'Rubi III',
-  Campeon = 'Campeon',
+  Octava = 'Octava',
+  Septima = 'Septima',
+  Sexta = 'Sexta',
+  Quinta = 'Quinta',
+  Cuarta = 'Cuarta',
+  Tercera = 'Tercera',
+  Segunda = 'Segunda',
+  Primera = 'Primera',
+  //mientras mas bajo mejor
 }
 
 export enum Club {
@@ -41,7 +34,7 @@ export class Jugador {
   Nombre: string;
 
   @Column()
-  Rango: RangoJugador = RangoJugador.Bronce1;
+  Rango: RangoJugador = RangoJugador.Octava;
 
   @Column()
   Foto: string;
