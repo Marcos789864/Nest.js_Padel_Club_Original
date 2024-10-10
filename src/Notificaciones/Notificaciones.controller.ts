@@ -22,12 +22,18 @@ export class NotificacionesController {
   }
   @UseGuards(AuthGuard)
   @Get(':id')
-  async ObtenerNotificacion(@Param('id', ParseIntPipe) id: number) {
+  async ObtenerNotificacionbyRecepetor(@Param('id', ParseIntPipe) id: number) {
     return this.notificacionesService.GetNotificacion(id);
   }
   @UseGuards(AuthGuard)
   @Post()
   async CrearNotificacion(@Body() signInDto: NotificacionesDto) {
     return this.notificacionesService.Create(signInDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('infoNotificacion/:id')
+  async GetInfoNotificacionById(@Param('id', ParseIntPipe) id: number) {
+    return this.notificacionesService.GetNotificacionId(id);
   }
 }

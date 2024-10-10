@@ -26,4 +26,12 @@ export class NotificacionesService {
       },
     });
   }
+
+  GetNotificacionId(idNoti) {
+    return this.notificacionesRepository.findOne({
+      where: {
+        id: idNoti,
+      },
+    });
+  }
 }
