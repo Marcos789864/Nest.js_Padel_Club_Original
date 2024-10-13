@@ -39,7 +39,8 @@ import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'root',
+      password: 'ricochet201',
+      //root o ricochet201
       database: 'postgres',
       entities: [
         Jugador,
