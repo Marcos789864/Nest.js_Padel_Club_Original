@@ -34,6 +34,7 @@ export class NotificacionesController {
   @UseGuards(AuthGuard)
   @Get('infoNotificacion/:id')
   async GetInfoNotificacionById(@Param('id', ParseIntPipe) id: number) {
+    console.log('numero id noti' + id);
     return this.notificacionesService.GetNotificacionId(id);
   }
 }
