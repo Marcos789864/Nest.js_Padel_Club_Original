@@ -37,4 +37,6 @@ export class JugadorDto {
   Club: Club;
   @IsString()
   iv?: string;
+  @IsNumber()
+  Cant_Partidos?: number;
 }

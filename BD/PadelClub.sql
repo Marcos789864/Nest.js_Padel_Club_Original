@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-10-09 14:29:14
+-- Started on 2024-10-16 10:39:34
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -240,7 +240,8 @@ CREATE TABLE public.jugador (
     "Rango" character varying NOT NULL,
     "Foto" character varying NOT NULL,
     "Club" character varying NOT NULL,
-    iv character varying NOT NULL
+    iv character varying NOT NULL,
+    "Cant_Partidos" integer NOT NULL
 );
 
 
@@ -525,6 +526,7 @@ INSERT INTO public.equipo1 VALUES (2, 29, 0);
 INSERT INTO public.equipo1 VALUES (3, 29, 1);
 INSERT INTO public.equipo1 VALUES (4, 29, 1);
 INSERT INTO public.equipo1 VALUES (5, 29, 0);
+INSERT INTO public.equipo1 VALUES (6, 29, 1);
 
 
 --
@@ -538,6 +540,7 @@ INSERT INTO public.equipo2 VALUES (2, 0, 0);
 INSERT INTO public.equipo2 VALUES (3, 2, 3);
 INSERT INTO public.equipo2 VALUES (4, 30, 3);
 INSERT INTO public.equipo2 VALUES (5, 0, 0);
+INSERT INTO public.equipo2 VALUES (6, 26, 27);
 
 
 --
@@ -551,6 +554,7 @@ INSERT INTO public.grupo_x_jugador VALUES (2, 2, 2);
 INSERT INTO public.grupo_x_jugador VALUES (3, 3, 3);
 INSERT INTO public.grupo_x_jugador VALUES (4, 4, 4);
 INSERT INTO public.grupo_x_jugador VALUES (5, 5, 5);
+INSERT INTO public.grupo_x_jugador VALUES (6, 6, 6);
 
 
 --
@@ -559,19 +563,19 @@ INSERT INTO public.grupo_x_jugador VALUES (5, 5, 5);
 -- Data for Name: jugador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (1, 1000, 'Flor', 'Flor@Gmail.com', 'Flor', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (3, 1000, 'Hugo', 'Hugo@Gmail.com', 'Hugo', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (4, 1000, 'Violeta', 'Violeta@Gmail.com', 'Violeta', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (5, 1000, 'Bru', 'Bruno@Gmail.com', 'Bruno', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (19, 1000, 'ChinoCapo', 'Chino@Gmail.com', 'Felipe', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (21, 1000, 'Fe', 'Ferra@Gmail.com', 'Ferra', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (24, 1000, 'Fe', 'Ferrara@Gmail.com', 'Ferrara', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (26, 1000, ']g��	%', 'Jose@Gmail.com', 'Jose', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (27, 1000, '�L��C', 'Pana@Gmail.com', 'Pana', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (28, 1000, 'f4a724f4969c73cd5d68f1', 'Marto@Gmail.com', 'Marto', 'Bronce I', '', 'Hebraica', '8202ef20735fbb73b32f37c00a9074a7');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (29, 1000, '97dd35695dfcbb', 'ñoño@gmail.com', 'ñoño', 'Bronce I', '', 'Hebraica', 'd6e05064177db80bc5b74cc39e0bb85f');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (30, 1000, 'b5e09c309f', 'jose@gmail.com', 'jose', 'Bronce I', '', 'Hebraica', '5bbdef7fec9b3c094c221d6359387158');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (2, 900, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h');
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (1, 1000, 'Flor', 'Flor@Gmail.com', 'Flor', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (2, 900, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (3, 1000, 'Hugo', 'Hugo@Gmail.com', 'Hugo', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (4, 1000, 'Violeta', 'Violeta@Gmail.com', 'Violeta', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (5, 1000, 'Bru', 'Bruno@Gmail.com', 'Bruno', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (19, 1000, 'ChinoCapo', 'Chino@Gmail.com', 'Felipe', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (21, 1000, 'Fe', 'Ferra@Gmail.com', 'Ferra', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (24, 1000, 'Fe', 'Ferrara@Gmail.com', 'Ferrara', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (26, 1000, ']g��	%', 'Jose@Gmail.com', 'Jose', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (27, 1000, '�L��C', 'Pana@Gmail.com', 'Pana', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (28, 1000, 'f4a724f4969c73cd5d68f1', 'Marto@Gmail.com', 'Marto', 'Bronce I', '', 'Hebraica', '8202ef20735fbb73b32f37c00a9074a7', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (29, 1000, '97dd35695dfcbb', 'ñoño@gmail.com', 'ñoño', 'Bronce I', '', 'Hebraica', 'd6e05064177db80bc5b74cc39e0bb85f', 0);
+INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (30, 1000, 'b5e09c309f', 'jose@gmail.com', 'jose', 'Bronce I', '', 'Hebraica', '5bbdef7fec9b3c094c221d6359387158', 0);
 
 
 --
@@ -592,6 +596,7 @@ INSERT INTO public.msjnoti VALUES (1, 'Confirmar_Resultado_Partido', '¿Este fue
 INSERT INTO public.notificaciones VALUES (3, 'Partido', 1, 2, 'Te invito a unirte a mi partdo', 0);
 INSERT INTO public.notificaciones VALUES (4, 'Invitacion_Partido', 1, 29, 'Hola', 0);
 INSERT INTO public.notificaciones VALUES (5, 'Confirmar_Resultado_Partido', 1, 29, '¿Este fue el resultado del partido?', 4);
+INSERT INTO public.notificaciones VALUES (6, 'Confirmar_Resultado_Partido', 1, 27, '¿Este fue el resultado del partido?', 6);
 
 
 --
@@ -649,6 +654,7 @@ INSERT INTO public.partido VALUES (41, 4, '7 - 6', '7 - 6', '6 - 7', '2024-10-09
 -- Data for Name: partido_pendiente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.partido_pendiente VALUES (1, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-16 09:33:20.045', 2, 1, false);
 
 
 --
@@ -675,7 +681,7 @@ SELECT pg_catalog.setval('public."amigos_idAmistad_seq"', 3, true);
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 5, true);
+SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 6, true);
 
 
 --
@@ -684,7 +690,7 @@ SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 5, true);
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 5, true);
+SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 6, true);
 
 
 --
@@ -693,7 +699,7 @@ SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 5, true);
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 5, true);
+SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 6, true);
 
 
 --
@@ -720,7 +726,7 @@ SELECT pg_catalog.setval('public.msjnoti_id_seq', 1, true);
 -- Name: notificaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificaciones_id_seq', 5, true);
+SELECT pg_catalog.setval('public.notificaciones_id_seq', 6, true);
 
 
 --
@@ -738,7 +744,7 @@ SELECT pg_catalog.setval('public."partido_idPartido_seq"', 41, true);
 -- Name: partido_pendiente_idPartido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."partido_pendiente_idPartido_seq"', 1, false);
+SELECT pg_catalog.setval('public."partido_pendiente_idPartido_seq"', 1, true);
 
 
 --
@@ -840,7 +846,7 @@ ALTER TABLE ONLY public.jugador
     ADD CONSTRAINT "UQ_cf8076b83801050d32b071d7f2e" UNIQUE ("Nombre");
 
 
--- Completed on 2024-10-09 14:29:15
+-- Completed on 2024-10-16 10:39:34
 
 --
 -- PostgreSQL database dump complete
