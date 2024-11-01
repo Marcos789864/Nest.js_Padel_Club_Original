@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { PartidoDto } from './dto/PartidoPendienteDto';
 import { PartidoService } from './Partido.service';
-
 @Controller('Partido')
 export class PartidoController {
   constructor(private partidoService: PartidoService) {}
@@ -60,6 +59,16 @@ export class PartidoController {
       throw new BadRequestException(
         'Error al obtener el registro de JugadorXGrupo',
       );
+    }
+  }
+
+  @Post('Historial')
+  async getPartidos(@Body('id', ParseIntPipe) id: number) {
+    try {
+      const response = await this.partidoService.getPartidosbyIdJugador(id);
+      return JSON.stringify(response, null, 2);
+    } catch (error) {
+      console.log('Error al obtener partidos');
     }
   }
 }
