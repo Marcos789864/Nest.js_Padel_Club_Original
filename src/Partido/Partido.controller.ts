@@ -45,7 +45,6 @@ export class PartidoController {
     @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
   ) {
     try {
-      // Utiliza ambos parámetros para obtener la información necesaria
       const { jugadores } = await this.partidoService.getGrupoJugadores(
         idEquipo1,
         idEquipo2,
@@ -65,7 +64,7 @@ export class PartidoController {
   @Post('Historial')
   async getPartidos(@Body('id', ParseIntPipe) id: number) {
     try {
-      const response = await this.partidoService.getPartidosbyIdJugador(id);
+      const response = await this.partidoService.GetPartidoById(id);
       return JSON.stringify(response, null, 2);
     } catch (error) {
       console.log('Error al obtener partidos');

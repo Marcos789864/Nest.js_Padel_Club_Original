@@ -68,6 +68,16 @@ export class PartidoService {
     }
   }
 
+  async GetPartidoById(id: number) {
+    {
+      console.log('id' + id);
+      const Partido = await this.PartidoRepository.find({
+        where: { idPartido: id },
+      });
+      return Partido;
+    }
+  }
+
   async getPartidosbyIdJugador(id: number) {
     const partidos = [];
     const equipo1 = await this.Equipo1Repository.find({
