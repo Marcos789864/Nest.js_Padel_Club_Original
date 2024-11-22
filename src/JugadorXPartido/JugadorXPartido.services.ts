@@ -19,7 +19,7 @@ export class JugadorXPartidoService {
   ObtenerJugadoresXPartido(id) {
     const partido = this.JugadorXPartidoRepository.find({
       where: [
-        { idJugador: id },
+        { id: id },
         { idJugador2: id },
         { idJugador3: id },
         { idJugador4: id },

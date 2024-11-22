@@ -12,8 +12,8 @@ export class JugadorXPartidoController {
     return this.jugadorXPartidoServices.Create(JugadorXPartido);
   }
   @UseGuards(AuthGuard)
-  @Get(':idJugador')
-  async ObtenerMensajePorTipo(@Param('Tipo') idJugador: number) {
-    return this.jugadorXPartidoServices.ObtenerJugadoresXPartido(idJugador);
+  @Get(':idPartido')
+  async ObtenerJugadorPorPartido(@Param('idPartido') idPartido: number) {
+    return this.jugadorXPartidoServices.ObtenerJugadoresXPartido(idPartido);
   }
 }

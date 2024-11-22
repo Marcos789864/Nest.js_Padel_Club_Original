@@ -17,4 +17,5 @@ export class RegisterJugadorDTO {
   @IsString()
   Foto: string;
   iv: string;
+  Cant_Partidos: number;
 }

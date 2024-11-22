@@ -26,6 +26,8 @@ export class AuthController {
   @Post('register')
   register(@Body() registerDto: RegisterJugadorDTO) {
     {
+      console.log("entre");
+      console.log("register Dto" + registerDto)
       return this.authService.Register(registerDto);
     }
   }
@@ -50,8 +52,5 @@ export class AuthController {
     }
     return undefined;
   }
-  @Get('H')
-  async H() {
-    return 'H';
-  }
+  
 }
