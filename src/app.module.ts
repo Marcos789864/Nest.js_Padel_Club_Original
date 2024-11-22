@@ -43,7 +43,6 @@ import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
       port: 5432,
       username: 'postgres',
       password: 'root',
-      //root o ricochet201
       database: 'postgres',
       entities: [
         Jugador,

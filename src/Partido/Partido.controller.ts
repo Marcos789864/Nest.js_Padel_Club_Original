@@ -5,8 +5,6 @@ import {
   Get,
   ParseIntPipe,
   Param,
-  BadRequestException,
-  NotFoundException,
 } from '@nestjs/common';
 import { PartidoDto } from './dto/PartidoPendienteDto';
 import { PartidoService } from './Partido.service';

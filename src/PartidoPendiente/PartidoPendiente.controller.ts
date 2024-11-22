@@ -29,6 +29,29 @@ export class PartidoPendienteController {
     }
   }
 
+  @Get(':idEquipo1/:idEquipo2')
+  async getGrupoJugadores(
+    @Param('idEquipo1', ParseIntPipe) idEquipo1: number,
+    @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
+  ) {
+    try {
+      const { jugadores } =
+        await this.partidoPendienteService.getGrupoJugadores(
+          idEquipo1,
+          idEquipo2,
+        );
+
+      return { jugadores };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new BadRequestException(error.message);
+      }
+      throw new BadRequestException(
+        'Error al obtener el registro de JugadorXGrupo',
+      );
+    }
+  }
+
   @Get(':idGrupo')
   async GetPartidoByIdGrupo(@Param('idGrupo') idGrupo: number) {
     try {
@@ -40,5 +63,4 @@ export class PartidoPendienteController {
       throw new Error('Error al buscar partido');
     }
   }
-
 }
