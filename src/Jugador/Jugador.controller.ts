@@ -37,9 +37,13 @@ export class JugadorController {
   }
   @UseGuards(AuthGuard)
   @Post('elo')
-  async CalcularEloJugadores(@Body infoElo:eloDto )
-  {
-
+  async CalcularEloJugadores(@Body() infoElo: eloDto) {
+    console.log('Entro en calcular elo' + JSON.stringify(infoElo, null, 2));
+    console.log('infoElo1' + JSON.stringify(infoElo[0], null, 2));
+    console.log('infoElo2' + JSON.stringify(infoElo[1], null, 2));
+    console.log('infoElo3' + JSON.stringify(infoElo[2], null, 2));
+    console.log('infoElo4' + JSON.stringify(infoElo[3], null, 2));
+    console.log('infoElo5' + JSON.stringify(infoElo[4], null, 2));
   }
 
   private calcularKFactor = (cantPartidos) => {
@@ -62,5 +66,9 @@ export class JugadorController {
     const diferencia = Math.abs(games1 - games2);
     const pors = 1 + (diferencia / setsValidos) * 0.07;
     return pors;
+  };
+
+  private calcularE = (eloJugador, eloOponente) => {
+    return 1 / (1 + Math.pow(10, (eloOponente - eloJugador) / 600));
   };
 }
