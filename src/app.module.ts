@@ -40,9 +40,9 @@ import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'aws-0-sa-east-1.pooler.supabase.com',
-      port: 5432,
+      port: 6543,
       username: 'postgres.muiqqlagroqobreejdja',
-      password: 'padelclub201',
+      password: 'padelclub201#',
       database: 'postgres',
       entities: [
         Jugador,
