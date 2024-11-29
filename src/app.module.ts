@@ -41,7 +41,7 @@ import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
       type: 'postgres',
       host: 'aws-0-sa-east-1.pooler.supabase.com',
       port: 6543,
-      username: 'postgres',
+      username: 'postgres.muiqqlagroqobreejdja',
       password: 'padelclub201',
       database: 'postgres',
       entities: [
