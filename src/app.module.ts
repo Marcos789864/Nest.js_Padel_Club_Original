@@ -23,6 +23,7 @@ import { Msjnoti } from './Msjnoti/Msjnoti.entity';
 import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
 import { JugadorXPartidoModule } from './JugadorXPartido/JugadorXPartido.modules';
 import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
+import { HealthModule } from './Health/Health.modules';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
     PartidoPendienteModules,
     MsjnotiModule,
     JugadorXPartidoModule,
+    HealthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
