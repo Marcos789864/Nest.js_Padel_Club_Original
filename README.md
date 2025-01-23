@@ -9,8 +9,8 @@ Poner nombre PadelClub
 Ir a "Connection" y poner Host "localhost" y Password "root"
 Una vez creada, tocar flechita para abajo en la base de datos con el nombre que pusimos
 Tiene que aparecer una opcion que es "Databases", dar flechita para abajo ahi tambien
-Dar click izquierdo a la opcion "Schemas" y despues click derecho
-Dar click a "Query Tool"
+Dar click izquierdo a la opcion "Schemas" y dspues click derecho
+Dar click a "Query Tool"e
 Volver a este proyecto y abrir "PadelClub".sql en la carpeta "BD"
 Copiar desde el primer "Create table" en adelante
 Pegar en la pagina pgadmin que abrimos

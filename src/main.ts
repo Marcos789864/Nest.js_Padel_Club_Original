@@ -5,10 +5,10 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'http://localhost:8081',
+    origin: '*',
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3005);
+  await app.listen(3005, '0.0.0.0');  // Escuchar en todas las interfaces de red
 }
 bootstrap();

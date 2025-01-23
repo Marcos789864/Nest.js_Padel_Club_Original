@@ -41,10 +41,10 @@ import { HealthModule } from './Health/Health.modules';
     HealthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'aws-0-sa-east-1.pooler.supabase.com',
-      port: 6543,
-      username: 'postgres.muiqqlagroqobreejdja',
-      password: 'padelclub201#',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'ricochet201',
       database: 'postgres',
       entities: [
         Jugador,
@@ -59,9 +59,9 @@ import { HealthModule } from './Health/Health.modules';
         JugadorXPartido,
       ],
       synchronize: true,
-      ssl:{
-        rejectUnauthorized: false,
-      }
+      //ssl:{
+        //rejectUnauthorized: false,
+      //}
     }),
   ],
   controllers: [AppController],
