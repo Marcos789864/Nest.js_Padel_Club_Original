@@ -53,6 +53,7 @@ export class AuthService {
     try {
       const iv = randomBytes(16);
       console.log('IV generado:', iv);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const key = (await promisify(scrypt)(
         register.Contraseña,
         'salt',

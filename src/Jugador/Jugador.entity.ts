@@ -44,6 +44,6 @@ export class Jugador {
   @Column()
   iv: string;
 
-  @Column()
+  @Column({nullable: true})
   Cant_Partidos: number;
 }
