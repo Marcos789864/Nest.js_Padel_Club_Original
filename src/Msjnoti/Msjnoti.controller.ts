@@ -14,8 +14,8 @@ export class MsjnotiController {
     return this.msjnotiService.Create(createMsjnoti);
   }
   @UseGuards(AuthGuard)
-  @Get(':Tipo')
-  async ObtenerMensajePorTipo(@Param('Tipo') tipo: Tipo) {
+  @Get(':tipo')
+  async ObtenerMensajePorTipo(@Param('tipo') tipo: Tipo) {
     return this.msjnotiService.ObtenerMensajePorTipo(tipo);
   }
 }

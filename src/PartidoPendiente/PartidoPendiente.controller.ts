@@ -13,7 +13,7 @@ import { PartidoPendienteService } from './PartidoPendiente.service';
 
 @Controller('PartidoPendiente')
 export class PartidoPendienteController {
-  constructor(private partidoService: PartidoPendienteService) {}
+  constructor(private partidoPendienteService: PartidoPendienteService) {}
 
   @Post()
   async create(@Body() createPartidoDto: PartidoPendienteDto) {
@@ -21,19 +21,8 @@ export class PartidoPendienteController {
       console.log('Solicitud recibida:', createPartidoDto);
 
       const resultado =
-        await this.partidoService.CreatePartido(createPartidoDto);
+        await this.partidoPendienteService.CreatePartido(createPartidoDto);
       return { mensaje: 'Partido creado correctamente', partido: resultado };
-    } catch (error) {
-      console.error('Error al crear el partido:', error);
-      throw new Error('Error al crear el partido');
-    }
-  }
-
-  @Get(':idGrupo')
-  async GetPartidoByIdGrupo(@Param() idGrupo: number) {
-    try {
-      const result = await this.partidoService.GetPartidoByIdGrupo(idGrupo);
-      return result;
     } catch (error) {
       console.error('Error al crear el partido:', error);
       throw new Error('Error al crear el partido');
@@ -46,10 +35,11 @@ export class PartidoPendienteController {
     @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
   ) {
     try {
-      const { jugadores } = await this.partidoService.getGrupoJugadores(
-        idEquipo1,
-        idEquipo2,
-      );
+      const { jugadores } =
+        await this.partidoPendienteService.getGrupoJugadores(
+          idEquipo1,
+          idEquipo2,
+        );
 
       return { jugadores };
     } catch (error) {
@@ -59,6 +49,18 @@ export class PartidoPendienteController {
       throw new BadRequestException(
         'Error al obtener el registro de JugadorXGrupo',
       );
+    }
+  }
+
+  @Get(':idGrupo')
+  async GetPartidoByIdGrupo(@Param('idGrupo') idGrupo: number) {
+    try {
+      const result =
+        await this.partidoPendienteService.GetPartidoByIdGrupo(idGrupo);
+      return result;
+    } catch (error) {
+      console.error('Error al crear el partido:', error);
+      throw new Error('Error al buscar partido');
     }
   }
 }

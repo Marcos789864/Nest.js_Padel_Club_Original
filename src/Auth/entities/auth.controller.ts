@@ -50,8 +50,4 @@ export class AuthController {
     }
     return undefined;
   }
-  @Get('H')
-  async H() {
-    return 'H';
-  }
 }

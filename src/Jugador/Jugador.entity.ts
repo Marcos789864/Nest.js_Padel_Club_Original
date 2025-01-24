@@ -9,7 +9,6 @@ export enum RangoJugador {
   Tercera = 'Tercera',
   Segunda = 'Segunda',
   Primera = 'Primera',
-  //mientras mas bajo mejor
 }
 
 export enum Club {
@@ -44,4 +43,7 @@ export class Jugador {
 
   @Column()
   iv: string;
+
+  @Column()
+  Cant_Partidos: number;
 }

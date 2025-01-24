@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.0
 
--- Started on 2024-10-09 14:29:14
+-- Started on 2024-11-22 08:07:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,7 +29,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO pg_database_owner;
 
 --
--- TOC entry 4878 (class 0 OID 0)
+-- TOC entry 4888 (class 0 OID 0)
 -- Dependencies: 5
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -101,7 +101,7 @@ CREATE SEQUENCE public."amigos_idAmistad_seq"
 ALTER SEQUENCE public."amigos_idAmistad_seq" OWNER TO postgres;
 
 --
--- TOC entry 4879 (class 0 OID 0)
+-- TOC entry 4889 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: amigos_idAmistad_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -140,7 +140,7 @@ CREATE SEQUENCE public."equipo1_idEquipo1_seq"
 ALTER SEQUENCE public."equipo1_idEquipo1_seq" OWNER TO postgres;
 
 --
--- TOC entry 4880 (class 0 OID 0)
+-- TOC entry 4890 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -179,7 +179,7 @@ CREATE SEQUENCE public."equipo2_idEquipo2_seq"
 ALTER SEQUENCE public."equipo2_idEquipo2_seq" OWNER TO postgres;
 
 --
--- TOC entry 4881 (class 0 OID 0)
+-- TOC entry 4891 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -218,7 +218,7 @@ CREATE SEQUENCE public."grupo_x_jugador_idGrupo_seq"
 ALTER SEQUENCE public."grupo_x_jugador_idGrupo_seq" OWNER TO postgres;
 
 --
--- TOC entry 4882 (class 0 OID 0)
+-- TOC entry 4892 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -240,7 +240,8 @@ CREATE TABLE public.jugador (
     "Rango" character varying NOT NULL,
     "Foto" character varying NOT NULL,
     "Club" character varying NOT NULL,
-    iv character varying NOT NULL
+    iv character varying NOT NULL,
+    "Cant_Partidos" integer NOT NULL
 );
 
 
@@ -259,6 +260,48 @@ ALTER TABLE public.jugador ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
     NO MAXVALUE
     CACHE 1
 );
+
+
+--
+-- TOC entry 237 (class 1259 OID 16481)
+-- Name: jugador_x_partido; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.jugador_x_partido (
+    id integer NOT NULL,
+    "idJugador" integer NOT NULL,
+    "idJugador2" integer NOT NULL,
+    "idJugador3" integer NOT NULL,
+    "idJugador4" integer NOT NULL,
+    "idPartido" integer NOT NULL
+);
+
+
+ALTER TABLE public.jugador_x_partido OWNER TO postgres;
+
+--
+-- TOC entry 236 (class 1259 OID 16480)
+-- Name: jugador_x_partido_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.jugador_x_partido_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.jugador_x_partido_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4893 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: jugador_x_partido_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.jugador_x_partido_id_seq OWNED BY public.jugador_x_partido.id;
 
 
 --
@@ -292,7 +335,7 @@ CREATE SEQUENCE public.msjnoti_id_seq
 ALTER SEQUENCE public.msjnoti_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4883 (class 0 OID 0)
+-- TOC entry 4894 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: msjnoti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -334,7 +377,7 @@ CREATE SEQUENCE public.notificaciones_id_seq
 ALTER SEQUENCE public.notificaciones_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4884 (class 0 OID 0)
+-- TOC entry 4895 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: notificaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -378,7 +421,7 @@ CREATE SEQUENCE public."partido_idPartido_seq"
 ALTER SEQUENCE public."partido_idPartido_seq" OWNER TO postgres;
 
 --
--- TOC entry 4885 (class 0 OID 0)
+-- TOC entry 4896 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: partido_idPartido_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -423,7 +466,7 @@ CREATE SEQUENCE public."partido_pendiente_idPartido_seq"
 ALTER SEQUENCE public."partido_pendiente_idPartido_seq" OWNER TO postgres;
 
 --
--- TOC entry 4886 (class 0 OID 0)
+-- TOC entry 4897 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: partido_pendiente_idPartido_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -432,7 +475,7 @@ ALTER SEQUENCE public."partido_pendiente_idPartido_seq" OWNED BY public.partido_
 
 
 --
--- TOC entry 4680 (class 2604 OID 16450)
+-- TOC entry 4685 (class 2604 OID 16450)
 -- Name: amigos idAmistad; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -440,7 +483,7 @@ ALTER TABLE ONLY public.amigos ALTER COLUMN "idAmistad" SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4681 (class 2604 OID 16451)
+-- TOC entry 4686 (class 2604 OID 16451)
 -- Name: equipo1 idEquipo1; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -448,7 +491,7 @@ ALTER TABLE ONLY public.equipo1 ALTER COLUMN "idEquipo1" SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4682 (class 2604 OID 16452)
+-- TOC entry 4687 (class 2604 OID 16452)
 -- Name: equipo2 idEquipo2; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -456,7 +499,7 @@ ALTER TABLE ONLY public.equipo2 ALTER COLUMN "idEquipo2" SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4683 (class 2604 OID 16453)
+-- TOC entry 4688 (class 2604 OID 16453)
 -- Name: grupo_x_jugador idGrupo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -464,7 +507,15 @@ ALTER TABLE ONLY public.grupo_x_jugador ALTER COLUMN "idGrupo" SET DEFAULT nextv
 
 
 --
--- TOC entry 4684 (class 2604 OID 16454)
+-- TOC entry 4693 (class 2604 OID 16484)
+-- Name: jugador_x_partido id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jugador_x_partido ALTER COLUMN id SET DEFAULT nextval('public.jugador_x_partido_id_seq'::regclass);
+
+
+--
+-- TOC entry 4689 (class 2604 OID 16454)
 -- Name: msjnoti id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -472,7 +523,7 @@ ALTER TABLE ONLY public.msjnoti ALTER COLUMN id SET DEFAULT nextval('public.msjn
 
 
 --
--- TOC entry 4685 (class 2604 OID 16455)
+-- TOC entry 4690 (class 2604 OID 16455)
 -- Name: notificaciones id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -480,7 +531,7 @@ ALTER TABLE ONLY public.notificaciones ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4686 (class 2604 OID 16456)
+-- TOC entry 4691 (class 2604 OID 16456)
 -- Name: partido idPartido; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -488,7 +539,7 @@ ALTER TABLE ONLY public.partido ALTER COLUMN "idPartido" SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4687 (class 2604 OID 16457)
+-- TOC entry 4692 (class 2604 OID 16457)
 -- Name: partido_pendiente idPartido; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -496,7 +547,7 @@ ALTER TABLE ONLY public.partido_pendiente ALTER COLUMN "idPartido" SET DEFAULT n
 
 
 --
--- TOC entry 4853 (class 0 OID 16398)
+-- TOC entry 4861 (class 0 OID 16398)
 -- Dependencies: 216
 -- Data for Name: MsjNoti; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -504,155 +555,173 @@ ALTER TABLE ONLY public.partido_pendiente ALTER COLUMN "idPartido" SET DEFAULT n
 
 
 --
--- TOC entry 4855 (class 0 OID 16404)
+-- TOC entry 4863 (class 0 OID 16404)
 -- Dependencies: 218
 -- Data for Name: amigos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.amigos VALUES (1, 1, 2);
-INSERT INTO public.amigos VALUES (2, 1, 3);
-INSERT INTO public.amigos VALUES (3, 1, 4);
+INSERT INTO public.amigos ("idAmistad", id1, id2) VALUES (1, 1, 2);
+INSERT INTO public.amigos ("idAmistad", id1, id2) VALUES (2, 1, 3);
+INSERT INTO public.amigos ("idAmistad", id1, id2) VALUES (3, 1, 4);
 
 
 --
--- TOC entry 4857 (class 0 OID 16408)
+-- TOC entry 4865 (class 0 OID 16408)
 -- Dependencies: 220
 -- Data for Name: equipo1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.equipo1 VALUES (1, 29, 0);
-INSERT INTO public.equipo1 VALUES (2, 29, 0);
-INSERT INTO public.equipo1 VALUES (3, 29, 1);
-INSERT INTO public.equipo1 VALUES (4, 29, 1);
-INSERT INTO public.equipo1 VALUES (5, 29, 0);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (1, 29, 0);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (2, 29, 0);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (3, 29, 1);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (4, 29, 1);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (5, 29, 0);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (6, 29, 1);
+INSERT INTO public.equipo1 ("idEquipo1", id1, id2) VALUES (7, 32, 0);
 
 
 --
--- TOC entry 4859 (class 0 OID 16412)
+-- TOC entry 4867 (class 0 OID 16412)
 -- Dependencies: 222
 -- Data for Name: equipo2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.equipo2 VALUES (1, 0, 0);
-INSERT INTO public.equipo2 VALUES (2, 0, 0);
-INSERT INTO public.equipo2 VALUES (3, 2, 3);
-INSERT INTO public.equipo2 VALUES (4, 30, 3);
-INSERT INTO public.equipo2 VALUES (5, 0, 0);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (1, 0, 0);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (2, 0, 0);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (3, 2, 3);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (4, 30, 3);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (5, 0, 0);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (6, 26, 27);
+INSERT INTO public.equipo2 ("idEquipo2", id3, id4) VALUES (7, 0, 0);
 
 
 --
--- TOC entry 4861 (class 0 OID 16416)
+-- TOC entry 4869 (class 0 OID 16416)
 -- Dependencies: 224
 -- Data for Name: grupo_x_jugador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.grupo_x_jugador VALUES (1, 1, 1);
-INSERT INTO public.grupo_x_jugador VALUES (2, 2, 2);
-INSERT INTO public.grupo_x_jugador VALUES (3, 3, 3);
-INSERT INTO public.grupo_x_jugador VALUES (4, 4, 4);
-INSERT INTO public.grupo_x_jugador VALUES (5, 5, 5);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (1, 1, 1);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (2, 2, 2);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (3, 3, 3);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (4, 4, 4);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (5, 5, 5);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (6, 6, 6);
+INSERT INTO public.grupo_x_jugador ("idGrupo", "idEquipo1", "idEquipo2") VALUES (7, 7, 7);
 
 
 --
--- TOC entry 4863 (class 0 OID 16420)
+-- TOC entry 4871 (class 0 OID 16420)
 -- Dependencies: 226
 -- Data for Name: jugador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (1, 1000, 'Flor', 'Flor@Gmail.com', 'Flor', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (3, 1000, 'Hugo', 'Hugo@Gmail.com', 'Hugo', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (4, 1000, 'Violeta', 'Violeta@Gmail.com', 'Violeta', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (5, 1000, 'Bru', 'Bruno@Gmail.com', 'Bruno', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (19, 1000, 'ChinoCapo', 'Chino@Gmail.com', 'Felipe', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (21, 1000, 'Fe', 'Ferra@Gmail.com', 'Ferra', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (24, 1000, 'Fe', 'Ferrara@Gmail.com', 'Ferrara', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (26, 1000, ']g��	%', 'Jose@Gmail.com', 'Jose', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (27, 1000, '�L��C', 'Pana@Gmail.com', 'Pana', 'Bronce I', '', 'Hebraica', 'h');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (28, 1000, 'f4a724f4969c73cd5d68f1', 'Marto@Gmail.com', 'Marto', 'Bronce I', '', 'Hebraica', '8202ef20735fbb73b32f37c00a9074a7');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (29, 1000, '97dd35695dfcbb', 'ñoño@gmail.com', 'ñoño', 'Bronce I', '', 'Hebraica', 'd6e05064177db80bc5b74cc39e0bb85f');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (30, 1000, 'b5e09c309f', 'jose@gmail.com', 'jose', 'Bronce I', '', 'Hebraica', '5bbdef7fec9b3c094c221d6359387158');
-INSERT INTO public.jugador OVERRIDING SYSTEM VALUE VALUES (2, 900, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h');
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (2, 900, 'Mar', 'Marcos@Gmail.com', 'Marcos', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (4, 1000, 'Violeta', 'Violeta@Gmail.com', 'Violeta', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (5, 1000, 'Bru', 'Bruno@Gmail.com', 'Bruno', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (19, 1000, 'ChinoCapo', 'Chino@Gmail.com', 'Felipe', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (21, 1000, 'Fe', 'Ferra@Gmail.com', 'Ferra', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (24, 1000, 'Fe', 'Ferrara@Gmail.com', 'Ferrara', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (26, 1000, ']g��	%', 'Jose@Gmail.com', 'Jose', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (27, 1000, '�L��C', 'Pana@Gmail.com', 'Pana', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (28, 1000, 'f4a724f4969c73cd5d68f1', 'Marto@Gmail.com', 'Marto', 'Bronce I', '', 'Hebraica', '8202ef20735fbb73b32f37c00a9074a7', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (1, 1165, 'Flor', 'Flor@Gmail.com', 'Flor', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (29, 1165, '97dd35695dfcbb', 'ñoño@gmail.com', 'ñoño', 'Bronce I', '', 'Hebraica', 'd6e05064177db80bc5b74cc39e0bb85f', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (30, 836, 'b5e09c309f', 'jose@gmail.com', 'jose', 'Bronce I', '', 'Hebraica', '5bbdef7fec9b3c094c221d6359387158', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (3, 836, 'Hugo', 'Hugo@Gmail.com', 'Hugo', 'Bronce I', '', 'Hebraica', 'h', 0);
+INSERT INTO public.jugador (id, "Puntos", "Contraseña", "Gmail", "Nombre", "Rango", "Foto", "Club", iv, "Cant_Partidos") OVERRIDING SYSTEM VALUE VALUES (32, 1000, 'a2e7d905bef196', 'delfrancochili@gmail.com', 'Martin', 'Octava', '', 'Hebraica', 'f80fdfb5525cd1522bdd85e748fba565', 0);
 
 
 --
--- TOC entry 4865 (class 0 OID 16426)
+-- TOC entry 4882 (class 0 OID 16481)
+-- Dependencies: 237
+-- Data for Name: jugador_x_partido; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.jugador_x_partido (id, "idJugador", "idJugador2", "idJugador3", "idJugador4", "idPartido") VALUES (1, 1, 29, 3, 30, 1);
+
+
+--
+-- TOC entry 4873 (class 0 OID 16426)
 -- Dependencies: 228
 -- Data for Name: msjnoti; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.msjnoti VALUES (1, 'Confirmar_Resultado_Partido', '¿Este fue el resultado del partido?');
+INSERT INTO public.msjnoti (id, tipo, msj) VALUES (1, 'Confirmar_Resultado_Partido', '¿Este fue el resultado del partido?');
 
 
 --
--- TOC entry 4867 (class 0 OID 16432)
+-- TOC entry 4875 (class 0 OID 16432)
 -- Dependencies: 230
 -- Data for Name: notificaciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.notificaciones VALUES (3, 'Partido', 1, 2, 'Te invito a unirte a mi partdo', 0);
-INSERT INTO public.notificaciones VALUES (4, 'Invitacion_Partido', 1, 29, 'Hola', 0);
-INSERT INTO public.notificaciones VALUES (5, 'Confirmar_Resultado_Partido', 1, 29, '¿Este fue el resultado del partido?', 4);
+INSERT INTO public.notificaciones (id, "Tipo", "idE", "idR", "Mensaje", "idGrupo") VALUES (3, 'Partido', 1, 2, 'Te invito a unirte a mi partdo', 0);
+INSERT INTO public.notificaciones (id, "Tipo", "idE", "idR", "Mensaje", "idGrupo") VALUES (4, 'Invitacion_Partido', 1, 29, 'Hola', 0);
+INSERT INTO public.notificaciones (id, "Tipo", "idE", "idR", "Mensaje", "idGrupo") VALUES (5, 'Confirmar_Resultado_Partido', 1, 29, '¿Este fue el resultado del partido?', 4);
+INSERT INTO public.notificaciones (id, "Tipo", "idE", "idR", "Mensaje", "idGrupo") VALUES (6, 'Confirmar_Resultado_Partido', 1, 27, '¿Este fue el resultado del partido?', 6);
 
 
 --
--- TOC entry 4869 (class 0 OID 16438)
+-- TOC entry 4877 (class 0 OID 16438)
 -- Dependencies: 232
 -- Data for Name: partido; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.partido VALUES (1, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:15:20.334', 2, 1);
-INSERT INTO public.partido VALUES (2, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:29:04.156', 2, 1);
-INSERT INTO public.partido VALUES (3, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:32:57.295', 2, 1);
-INSERT INTO public.partido VALUES (4, 3, '6 - 7', '6 - 7', '7 - 6', '2024-09-20 10:33:26.782', 1, 2);
-INSERT INTO public.partido VALUES (5, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:41:33.292', 2, 1);
-INSERT INTO public.partido VALUES (6, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 10:43:23.568', 0, 3);
-INSERT INTO public.partido VALUES (7, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:44:27.917', 3, 0);
-INSERT INTO public.partido VALUES (8, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:45:06.947', 3, 0);
-INSERT INTO public.partido VALUES (9, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:50:17.77', 2, 1);
-INSERT INTO public.partido VALUES (10, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:41.42', 2, 1);
-INSERT INTO public.partido VALUES (11, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:45.82', 2, 1);
-INSERT INTO public.partido VALUES (12, 3, '7 - 6', '7 - 6', '', '2024-09-20 11:00:54.428', 2, 0);
-INSERT INTO public.partido VALUES (13, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:22:36.02', 2, 1);
-INSERT INTO public.partido VALUES (14, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:08.468', 2, 1);
-INSERT INTO public.partido VALUES (15, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:24.323', 2, 1);
-INSERT INTO public.partido VALUES (16, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:25:30.329', 2, 1);
-INSERT INTO public.partido VALUES (17, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:26:38.884', 2, 1);
-INSERT INTO public.partido VALUES (18, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:28:10.268', 2, 1);
-INSERT INTO public.partido VALUES (19, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:35:45.581', 2, 1);
-INSERT INTO public.partido VALUES (20, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:37:27.394', 2, 1);
-INSERT INTO public.partido VALUES (21, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:38:21.336', 2, 1);
-INSERT INTO public.partido VALUES (22, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:39:29.575', 1, 2);
-INSERT INTO public.partido VALUES (23, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:40:40.096', 0, 3);
-INSERT INTO public.partido VALUES (24, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:42:38.62', 0, 3);
-INSERT INTO public.partido VALUES (25, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:45:43.868', 2, 1);
-INSERT INTO public.partido VALUES (26, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:46:18.132', 2, 1);
-INSERT INTO public.partido VALUES (27, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:48:01.208', 2, 1);
-INSERT INTO public.partido VALUES (28, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:48:50.25', 3, 0);
-INSERT INTO public.partido VALUES (29, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:49:31.836', 2, 1);
-INSERT INTO public.partido VALUES (30, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:50:21.381', 2, 1);
-INSERT INTO public.partido VALUES (31, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:50:50.716', 1, 2);
-INSERT INTO public.partido VALUES (32, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:51:08.18', 2, 1);
-INSERT INTO public.partido VALUES (33, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:51:57.787', 3, 0);
-INSERT INTO public.partido VALUES (34, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:52:12.3', 2, 1);
-INSERT INTO public.partido VALUES (35, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:52:37.399', 2, 1);
-INSERT INTO public.partido VALUES (36, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:55:58.031', 2, 1);
-INSERT INTO public.partido VALUES (37, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 12:02:43.525', 2, 1);
-INSERT INTO public.partido VALUES (38, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-09 14:16:46.142', 2, 1);
-INSERT INTO public.partido VALUES (39, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-09 14:19:06.834', 2, 1);
-INSERT INTO public.partido VALUES (40, 4, '6 - 7', '6 - 7', '7 - 6', '2024-10-09 14:20:26.42', 1, 2);
-INSERT INTO public.partido VALUES (41, 4, '7 - 6', '7 - 6', '6 - 7', '2024-10-09 14:25:11.837', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (2, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:29:04.156', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (3, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 10:32:57.295', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (4, 3, '6 - 7', '6 - 7', '7 - 6', '2024-09-20 10:33:26.782', 1, 2);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (5, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:41:33.292', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (6, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 10:43:23.568', 0, 3);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (7, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:44:27.917', 3, 0);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (8, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 10:45:06.947', 3, 0);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (9, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:50:17.77', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (10, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:41.42', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (11, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 10:59:45.82', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (12, 3, '7 - 6', '7 - 6', '', '2024-09-20 11:00:54.428', 2, 0);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (13, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:22:36.02', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (14, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:08.468', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (15, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:23:24.323', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (16, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:25:30.329', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (17, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:26:38.884', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (18, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:28:10.268', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (19, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:35:45.581', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (20, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:37:27.394', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (21, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:38:21.336', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (22, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:39:29.575', 1, 2);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (23, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:40:40.096', 0, 3);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (24, 3, '6 - 7', '6 - 7', '6 - 7', '2024-09-20 11:42:38.62', 0, 3);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (25, 3, '6 - 7', '7 - 6', '7 - 6', '2024-09-20 11:45:43.868', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (26, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:46:18.132', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (27, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:48:01.208', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (28, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:48:50.25', 3, 0);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (29, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:49:31.836', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (30, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:50:21.381', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (31, 3, '6 - 7', '7 - 6', '6 - 7', '2024-09-20 11:50:50.716', 1, 2);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (32, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:51:08.18', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (33, 3, '7 - 6', '7 - 6', '7 - 6', '2024-09-20 11:51:57.787', 3, 0);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (34, 3, '7 - 6', '6 - 7', '7 - 6', '2024-09-20 11:52:12.3', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (35, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:52:37.399', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (36, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 11:55:58.031', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (37, 3, '7 - 6', '7 - 6', '6 - 7', '2024-09-20 12:02:43.525', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (38, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-09 14:16:46.142', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (39, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-09 14:19:06.834', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (40, 4, '6 - 7', '6 - 7', '7 - 6', '2024-10-09 14:20:26.42', 1, 2);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (41, 4, '7 - 6', '7 - 6', '6 - 7', '2024-10-09 14:25:11.837', 2, 1);
+INSERT INTO public.partido ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2") VALUES (1, 4, '7 - 6', '6 - 7', '7 - 6', '2024-11-22 08:03:00.51', 2, 1);
 
 
 --
--- TOC entry 4871 (class 0 OID 16444)
+-- TOC entry 4879 (class 0 OID 16444)
 -- Dependencies: 234
 -- Data for Name: partido_pendiente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.partido_pendiente ("idPartido", "idGrupo", set1, set2, set3, fecha, "puntajeEquipo1", "puntajeEquipo2", confirmacion) VALUES (1, 4, '7 - 6', '6 - 7', '7 - 6', '2024-10-16 09:33:20.045', 2, 1, false);
 
 
 --
--- TOC entry 4887 (class 0 OID 0)
+-- TOC entry 4898 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: MsjNoti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -661,7 +730,7 @@ SELECT pg_catalog.setval('public."MsjNoti_id_seq"', 1, false);
 
 
 --
--- TOC entry 4888 (class 0 OID 0)
+-- TOC entry 4899 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: amigos_idAmistad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -670,43 +739,52 @@ SELECT pg_catalog.setval('public."amigos_idAmistad_seq"', 3, true);
 
 
 --
--- TOC entry 4889 (class 0 OID 0)
+-- TOC entry 4900 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: equipo1_idEquipo1_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 5, true);
+SELECT pg_catalog.setval('public."equipo1_idEquipo1_seq"', 7, true);
 
 
 --
--- TOC entry 4890 (class 0 OID 0)
+-- TOC entry 4901 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: equipo2_idEquipo2_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 5, true);
+SELECT pg_catalog.setval('public."equipo2_idEquipo2_seq"', 7, true);
 
 
 --
--- TOC entry 4891 (class 0 OID 0)
+-- TOC entry 4902 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: grupo_x_jugador_idGrupo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 5, true);
+SELECT pg_catalog.setval('public."grupo_x_jugador_idGrupo_seq"', 7, true);
 
 
 --
--- TOC entry 4892 (class 0 OID 0)
+-- TOC entry 4903 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: jugador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.jugador_id_seq', 30, true);
+SELECT pg_catalog.setval('public.jugador_id_seq', 32, true);
 
 
 --
--- TOC entry 4893 (class 0 OID 0)
+-- TOC entry 4904 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: jugador_x_partido_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.jugador_x_partido_id_seq', 1, true);
+
+
+--
+-- TOC entry 4905 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: msjnoti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -715,16 +793,16 @@ SELECT pg_catalog.setval('public.msjnoti_id_seq', 1, true);
 
 
 --
--- TOC entry 4894 (class 0 OID 0)
+-- TOC entry 4906 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: notificaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.notificaciones_id_seq', 5, true);
+SELECT pg_catalog.setval('public.notificaciones_id_seq', 6, true);
 
 
 --
--- TOC entry 4895 (class 0 OID 0)
+-- TOC entry 4907 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: partido_idPartido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -733,16 +811,16 @@ SELECT pg_catalog.setval('public."partido_idPartido_seq"', 41, true);
 
 
 --
--- TOC entry 4896 (class 0 OID 0)
+-- TOC entry 4908 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: partido_pendiente_idPartido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."partido_pendiente_idPartido_seq"', 1, false);
+SELECT pg_catalog.setval('public."partido_pendiente_idPartido_seq"', 1, true);
 
 
 --
--- TOC entry 4695 (class 2606 OID 16459)
+-- TOC entry 4701 (class 2606 OID 16459)
 -- Name: grupo_x_jugador PK_1962cc6e9effc58f1fade679eaf; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -751,7 +829,7 @@ ALTER TABLE ONLY public.grupo_x_jugador
 
 
 --
--- TOC entry 4697 (class 2606 OID 16461)
+-- TOC entry 4703 (class 2606 OID 16461)
 -- Name: jugador PK_1ab9b28fb3c4e9135da05f1cc3c; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -760,7 +838,16 @@ ALTER TABLE ONLY public.jugador
 
 
 --
--- TOC entry 4709 (class 2606 OID 16463)
+-- TOC entry 4717 (class 2606 OID 16486)
+-- Name: jugador_x_partido PK_27aa7c6c67ef3019ad6c6372922; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jugador_x_partido
+    ADD CONSTRAINT "PK_27aa7c6c67ef3019ad6c6372922" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4715 (class 2606 OID 16463)
 -- Name: partido_pendiente PK_2ece4e7a49271d611b9c768fbb1; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -769,7 +856,7 @@ ALTER TABLE ONLY public.partido_pendiente
 
 
 --
--- TOC entry 4689 (class 2606 OID 16465)
+-- TOC entry 4695 (class 2606 OID 16465)
 -- Name: amigos PK_61bcc12cbbe12c27ab9611d1b60; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -778,7 +865,7 @@ ALTER TABLE ONLY public.amigos
 
 
 --
--- TOC entry 4693 (class 2606 OID 16467)
+-- TOC entry 4699 (class 2606 OID 16467)
 -- Name: equipo2 PK_65b181020d538b823957a67e948; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -787,7 +874,7 @@ ALTER TABLE ONLY public.equipo2
 
 
 --
--- TOC entry 4705 (class 2606 OID 16469)
+-- TOC entry 4711 (class 2606 OID 16469)
 -- Name: notificaciones PK_a9d32a419ff58b53a38b5ef85d4; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -796,7 +883,7 @@ ALTER TABLE ONLY public.notificaciones
 
 
 --
--- TOC entry 4691 (class 2606 OID 16471)
+-- TOC entry 4697 (class 2606 OID 16471)
 -- Name: equipo1 PK_f33a52307756b62ea258ad1cf05; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -805,7 +892,7 @@ ALTER TABLE ONLY public.equipo1
 
 
 --
--- TOC entry 4703 (class 2606 OID 16473)
+-- TOC entry 4709 (class 2606 OID 16473)
 -- Name: msjnoti PK_face435175405b954796a4f13a0; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -814,7 +901,7 @@ ALTER TABLE ONLY public.msjnoti
 
 
 --
--- TOC entry 4707 (class 2606 OID 16475)
+-- TOC entry 4713 (class 2606 OID 16475)
 -- Name: partido PK_fd942ed1d6537675d98bf341973; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -823,7 +910,7 @@ ALTER TABLE ONLY public.partido
 
 
 --
--- TOC entry 4699 (class 2606 OID 16477)
+-- TOC entry 4705 (class 2606 OID 16477)
 -- Name: jugador UQ_59089a3fc738271d4618497c350; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -832,7 +919,7 @@ ALTER TABLE ONLY public.jugador
 
 
 --
--- TOC entry 4701 (class 2606 OID 16479)
+-- TOC entry 4707 (class 2606 OID 16479)
 -- Name: jugador UQ_cf8076b83801050d32b071d7f2e; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -840,7 +927,7 @@ ALTER TABLE ONLY public.jugador
     ADD CONSTRAINT "UQ_cf8076b83801050d32b071d7f2e" UNIQUE ("Nombre");
 
 
--- Completed on 2024-10-09 14:29:15
+-- Completed on 2024-11-22 08:07:22
 
 --
 -- PostgreSQL database dump complete

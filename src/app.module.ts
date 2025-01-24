@@ -21,6 +21,9 @@ import { PartidoPendiente } from './PartidoPendiente/PartidoPendiente.entity';
 import { PartidoPendienteModules } from './PartidoPendiente/PartidoPendiente.modules';
 import { Msjnoti } from './Msjnoti/Msjnoti.entity';
 import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
+import { JugadorXPartidoModule } from './JugadorXPartido/JugadorXPartido.modules';
+import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
+import { HealthModule } from './Health/Health.modules';
 
 @Module({
   imports: [
@@ -34,13 +37,14 @@ import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
     Equipo2Modules,
     PartidoPendienteModules,
     MsjnotiModule,
+    JugadorXPartidoModule,
+    HealthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
       password: 'ricochet201',
-      //root o ricochet201
       database: 'postgres',
       entities: [
         Jugador,
@@ -52,8 +56,12 @@ import { MsjnotiModule } from './Msjnoti/Msjnoti.modules';
         Equipo2,
         PartidoPendiente,
         Msjnoti,
+        JugadorXPartido,
       ],
       synchronize: true,
+      //ssl:{
+        //rejectUnauthorized: false,
+      //}
     }),
   ],
   controllers: [AppController],

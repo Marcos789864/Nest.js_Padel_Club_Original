@@ -5,12 +5,9 @@ import {
   Get,
   ParseIntPipe,
   Param,
-  BadRequestException,
-  NotFoundException,
 } from '@nestjs/common';
 import { PartidoDto } from './dto/PartidoPendienteDto';
 import { PartidoService } from './Partido.service';
-
 @Controller('Partido')
 export class PartidoController {
   constructor(private partidoService: PartidoService) {}
@@ -40,26 +37,13 @@ export class PartidoController {
     }
   }
 
-  @Get(':idEquipo1/:idEquipo2')
-  async getGrupoJugadores(
-    @Param('idEquipo1', ParseIntPipe) idEquipo1: number,
-    @Param('idEquipo2', ParseIntPipe) idEquipo2: number,
-  ) {
+  @Post('Historial')
+  async getPartidos(@Body('id', ParseIntPipe) id: number) {
     try {
-      // Utiliza ambos parámetros para obtener la información necesaria
-      const { jugadores } = await this.partidoService.getGrupoJugadores(
-        idEquipo1,
-        idEquipo2,
-      );
-
-      return { jugadores };
+      const response = await this.partidoService.GetPartidoById(id);
+      return JSON.stringify(response, null, 2);
     } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw new BadRequestException(error.message);
-      }
-      throw new BadRequestException(
-        'Error al obtener el registro de JugadorXGrupo',
-      );
+      console.log('Error al obtener partidos');
     }
   }
 }

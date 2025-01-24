@@ -9,8 +9,8 @@ Poner nombre PadelClub
 Ir a "Connection" y poner Host "localhost" y Password "root"
 Una vez creada, tocar flechita para abajo en la base de datos con el nombre que pusimos
 Tiene que aparecer una opcion que es "Databases", dar flechita para abajo ahi tambien
-Dar click izquierdo a la opcion "Schemas" y despues click derecho
-Dar click a "Query Tool"
+Dar click izquierdo a la opcion "Schemas" y dspues click derecho
+Dar click a "Query Tool"e
 Volver a este proyecto y abrir "PadelClub".sql en la carpeta "BD"
 Copiar desde el primer "Create table" en adelante
 Pegar en la pagina pgadmin que abrimos
@@ -21,6 +21,6 @@ ngrok:
 
 Abrir el cmd, y poner cd .. hasta que la ruta te quede en el disco C
 Una vez en el disco C pones cd y empezas a tocar el tab hasta que aparezca ngrok-v3-stable-windows-amd64
-Apretas enter y despues escribis ngrok update, esperas a que se actulice
+Apretas enter y despues escribis ngrok update, esperas a que se actualice
 Una vez actualizado, vas a ir a google y vas a iniciar sesion en la pagina de Ngrok
-Una vez iniciado creas un dominio estatico, volves a la pantalla principal y 
+Una vez iniciado creas un dominio estatico, volves a la pantalla principal.

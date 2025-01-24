@@ -9,6 +9,7 @@ import { Equipo2 } from 'src/Equipo2/Equipo2.entity';
 
 @Injectable()
 export class PartidoService {
+  PartidoService: any;
   constructor(
     @InjectRepository(Jugador)
     private JugadorRepository: Repository<Jugador>,
@@ -59,10 +60,49 @@ export class PartidoService {
 
   async GetPartidoByIdGrupo(idGrupo: number) {
     {
-      const Partido = await this.PartidoRepository.findOne({
+      console.log('id' + idGrupo);
+      const Partido = await this.PartidoRepository.find({
         where: { idGrupo },
       });
       return Partido;
     }
+  }
+
+  async GetPartidoById(id: number) {
+    {
+      console.log('id' + id);
+      const Partido = await this.PartidoRepository.find({
+        where: { idPartido: id },
+      });
+      return Partido;
+    }
+  }
+
+  async getPartidosbyIdJugador(id: number) {
+    const partidos = [];
+    const equipo1 = await this.Equipo1Repository.find({
+      where: [{ id1: id }, { id2: id }],
+    });
+
+    const filteredEquipo1 = equipo1.filter((equipo) => equipo.id2 !== 0);
+    const equipo2 = await this.Equipo2Repository.find({
+      where: [{ id3: id }, { id4: id }],
+    });
+
+    const filteredEquipo2 = equipo2.filter(
+      (equipo) => equipo.id4 !== 0 && equipo.id3 !== 0,
+    );
+
+    console.log(filteredEquipo1);
+    console.log(filteredEquipo2);
+
+    for (let i = 0; i < filteredEquipo2.length; i++) {
+      const idGrupo = filteredEquipo2[i].idEquipo2;
+      console.log('ID de grupo a buscar:', idGrupo);
+      const partido = await this.GetPartidoByIdGrupo(idGrupo);
+      partidos.push(partido);
+    }
+    console.log(JSON.stringify(partidos, null, 2));
+    return partidos;
   }
 }

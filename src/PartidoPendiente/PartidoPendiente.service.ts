@@ -13,7 +13,7 @@ export class PartidoPendienteService {
     @InjectRepository(Jugador)
     private JugadorRepository: Repository<Jugador>,
     @InjectRepository(PartidoPendiente)
-    private PartidoRepository: Repository<PartidoPendiente>,
+    private PartidoPendienteRepository: Repository<PartidoPendiente>,
     @InjectRepository(Equipo1)
     private Equipo1Repository: Repository<Equipo1>,
     @InjectRepository(Equipo2)
@@ -22,10 +22,10 @@ export class PartidoPendienteService {
 
   async CreatePartido(Partido: PartidoPendienteDto) {
     try {
-      const newPartido = this.PartidoRepository.create(Partido);
+      const newPartido = this.PartidoPendienteRepository.create(Partido);
       console.log('Partido creado con éxito:', newPartido);
 
-      return await this.PartidoRepository.save(newPartido); // Guarda el partido en la base de datos
+      return await this.PartidoPendienteRepository.save(newPartido); // Guarda el partido en la base de datos
     } catch (error) {
       console.error('Error al crear el partido:', error);
       throw new Error('Error al crear el partido');
@@ -56,10 +56,10 @@ export class PartidoPendienteService {
 
     return { idEquipo1: jugadorEquipo1, idEquipo2: jugadorEquipo2, jugadores };
   }
-  async GetPartidoByIdGrupo(idGrupo: number) {
+  async GetPartidoByIdGrupo(idG: number) {
     {
-      const Partido = await this.PartidoRepository.findOne({
-        where: { idGrupo },
+      const Partido = await this.PartidoPendienteRepository.findOne({
+        where: { idGrupo: idG },
       });
       return Partido;
     }
