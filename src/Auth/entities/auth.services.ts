@@ -51,31 +51,44 @@ export class AuthService {
 
   async Register(register) {
     try {
+      console.log('Inicio del proceso de registro');
+  
+      // Verificar si el correo electrónico ya existe
+      const existingUser = await this.jugadorRepository.findOne({ where: { Gmail: register.Gmail } });
+      if (existingUser) {
+        console.log('Correo electrónico ya registrado:', register.Gmail);
+        throw new Error('El correo electrónico ya está registrado');
+      }
+  
       const iv = randomBytes(16);
       console.log('IV generado:', iv);
-      const key = (await promisify(scrypt)(
-        register.Contraseña,
-        'salt',
-        32,
-      )) as Buffer;
+  
+      const key = (await promisify(scrypt)(register.Contraseña, 'salt', 32)) as Buffer;
+      console.log('Clave derivada:', key);
+  
       const cipher = createCipheriv('aes-256-ctr', jwtConstants.secret, iv);
-      const encryptedText = Buffer.concat([
-        cipher.update(register.Contraseña, 'utf8'),
-        cipher.final(),
-      ]);
+      const encryptedText = Buffer.concat([cipher.update(register.Contraseña, 'utf8'), cipher.final()]);
+      console.log('Texto encriptado:', encryptedText);
+  
       const ivString = iv.toString('hex');
-
       register.Contraseña = encryptedText.toString('hex');
       register.iv = ivString;
+      console.log('Contraseña e IV convertidos a string:', register.Contraseña, ivString);
+  
       const registerJugador = await this.jugadorRepository.create(register);
+      console.log('Jugador creado:', registerJugador);
+  
       await this.jugadorRepository.save(registerJugador);
-
+      console.log('Jugador guardado en la base de datos');
+  
       return registerJugador;
     } catch (error) {
       console.error('Error durante el registro:', error);
       throw new Error('Error en el proceso de registro');
     }
   }
+  
+  
 
   async desEncriptarToken(token) {
     try {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IntegerType, Repository } from 'typeorm';
 import { JugadorXPartido } from './JugadorXPartido.entity';
 import { JugadorXPartidoDto } from './dto/JugadorXPartido';
 
@@ -11,9 +11,16 @@ export class JugadorXPartidoService {
     private JugadorXPartidoRepository: Repository<JugadorXPartido>,
   ) {}
 
-  Create(JugadorXPartido: JugadorXPartidoDto) {
-    const partido = this.JugadorXPartidoRepository.create(JugadorXPartido);
-    return this.JugadorXPartidoRepository.save(partido);
+  async Create(JugadorXPartido: JugadorXPartidoDto) {
+    try{
+      const partido = this.JugadorXPartidoRepository.create(JugadorXPartido);
+      console.log('exito', partido)
+      return await this.JugadorXPartidoRepository.save(partido);
+    } catch(error) {
+      console.error('Error al crear el historial coso:', error);
+      throw new Error('Error al crear cosocosin');
+    }
+    
   }
 
   ObtenerJugadoresXPartido(id) {
@@ -26,5 +33,28 @@ export class JugadorXPartidoService {
       ],
     });
     return partido;
+  }
+  
+  async AgregarJugadorXPartido(jugadorXPartidoDto: JugadorXPartidoDto) {
+    const nuevoRegistro = this.JugadorXPartidoRepository.create(jugadorXPartidoDto);
+    return await this.JugadorXPartidoRepository.save(nuevoRegistro);
+  }
+
+  async PartidosPorJugador(idJug: number){
+    try{
+      const response = await this.JugadorXPartidoRepository.find({
+        where: [
+          {idJugador: idJug},
+          {idJugador2: idJug},
+          {idJugador3: idJug},
+          {idJugador4: idJug}
+        ]
+      })
+      console.log('exito?', response)
+      return response;
+    } catch(error) {
+      console.error('Error al crear el historial coso:', error);
+      throw new Error('Error al crear cosocosin');
+    }
   }
 }
