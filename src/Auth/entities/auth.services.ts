@@ -62,19 +62,12 @@ export class AuthService {
   
       const iv = randomBytes(16);
       console.log('IV generado:', iv);
-<<<<<<< HEAD
-  
-      const key = (await promisify(scrypt)(register.Contraseña, 'salt', 32)) as Buffer;
-      console.log('Clave derivada:', key);
-  
-=======
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const key = (await promisify(scrypt)(
         register.Contraseña,
         'salt',
         32,
       )) as Buffer;
->>>>>>> 641e35123becb071a9d81e313c7374e30890d456
       const cipher = createCipheriv('aes-256-ctr', jwtConstants.secret, iv);
       const encryptedText = Buffer.concat([cipher.update(register.Contraseña, 'utf8'), cipher.final()]);
       console.log('Texto encriptado:', encryptedText);
