@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { JugadorModule } from './Jugador/Jugador.modules';
 import { AppService } from './app.service';
+import { JugadorModule } from './Jugador/Jugador.modules';
 import { Jugador } from './Jugador/Jugador.entity';
 import { GrupoXJugadorModules } from './GrupoXJugador/GrupoXJugador.modules';
 import { GrupoXJugador } from './GrupoXJugador/GrupoXJugador.entity';
@@ -25,8 +27,10 @@ import { JugadorXPartidoModule } from './JugadorXPartido/JugadorXPartido.modules
 import { JugadorXPartido } from './JugadorXPartido/JugadorXPartido.entity';
 import { HealthModule } from './Health/Health.modules';
 
+
 @Module({
   imports: [
+    ConfigModule.forRoot(), // Carga las variables del .env
     JugadorModule,
     GrupoXJugadorModules,
     AmigosModule,
@@ -39,29 +43,27 @@ import { HealthModule } from './Health/Health.modules';
     MsjnotiModule,
     JugadorXPartidoModule,
     HealthModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'ricochet201',
-      database: 'postgres',
-      entities: [
-        Jugador,
-        GrupoXJugador,
-        Amigos,
-        Notificaciones,
-        Partido,
-        Equipo1,
-        Equipo2,
-        PartidoPendiente,
-        Msjnoti,
-        JugadorXPartido,
-      ],
-      synchronize: true,
-      //ssl:{
-        //rejectUnauthorized: false,
-      //}
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'postgres',
+        url: config.get<string>('DATABASE_URL'),
+        entities: [
+          Jugador,
+          GrupoXJugador,
+          Amigos,
+          Notificaciones,
+          Partido,
+          Equipo1,
+          Equipo2,
+          PartidoPendiente,
+          Msjnoti,
+          JugadorXPartido,
+        ],
+        synchronize: true, // ⚠ Solo en desarrollo
+        ssl: { rejectUnauthorized: false }, // Necesario para Railway
+      }),
     }),
   ],
   controllers: [AppController],

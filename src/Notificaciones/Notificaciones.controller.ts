@@ -26,7 +26,7 @@ export class NotificacionesController {
     return this.notificacionesService.GetNotificacion(id);
   }
   @UseGuards(AuthGuard)
-  @Post()
+  @Post('Crear')
   async CrearNotificacion(@Body() signInDto: NotificacionesDto) {
     return this.notificacionesService.Create(signInDto);
   }

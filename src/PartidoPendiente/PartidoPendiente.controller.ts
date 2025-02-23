@@ -52,11 +52,11 @@ export class PartidoPendienteController {
     }
   }
 
-  @Get(':idGrupo')
-  async GetPartidoByIdGrupo(@Param('idGrupo') idGrupo: number) {
+  @Get(':idPartido')
+  async GetPartidoById(@Param('idPartido') idPartido: number) {
     try {
       const result =
-        await this.partidoPendienteService.GetPartidoByIdGrupo(idGrupo);
+        await this.partidoPendienteService.GetPartidoById(idPartido);
       return result;
     } catch (error) {
       console.error('Error al crear el partido:', error);

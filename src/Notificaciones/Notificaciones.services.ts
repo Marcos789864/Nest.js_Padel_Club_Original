@@ -10,9 +10,15 @@ export class NotificacionesService {
     private notificacionesRepository: Repository<Notificaciones>,
   ) {}
 
-  Create(Notificacion) {
-    const newNotificacion = this.notificacionesRepository.create(Notificacion);
-    return this.notificacionesRepository.save(newNotificacion);
+  async Create(Notificacion) {
+    try{
+      const newNotificacion = this.notificacionesRepository.create(Notificacion);
+      return await this.notificacionesRepository.save(newNotificacion);
+    } catch (error) {
+      console.error('Error al crear el notificacion:', error);
+      throw new Error('Error al crear el waaaaaaaaaawaaaaaaaaaaaa ayuda');
+    }
+    
   }
 
   GetNotificaciones() {

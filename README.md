@@ -24,3 +24,6 @@ Una vez en el disco C pones cd y empezas a tocar el tab hasta que aparezca ngrok
 Apretas enter y despues escribis ngrok update, esperas a que se actualice
 Una vez actualizado, vas a ir a google y vas a iniciar sesion en la pagina de Ngrok
 Una vez iniciado creas un dominio estatico, volves a la pantalla principal.
+
+npm install @nestjs/config
+npm install @nestjs/config dotenv

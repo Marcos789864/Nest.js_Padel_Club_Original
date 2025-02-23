@@ -28,6 +28,6 @@ export class Notificaciones {
   @Column()
   Mensaje: string;
 
-  @Column()
-  idGrupo: number;
+  @Column({nullable: true})
+  idPartido: number;
 }

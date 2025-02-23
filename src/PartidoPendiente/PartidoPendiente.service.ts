@@ -64,4 +64,12 @@ export class PartidoPendienteService {
       return Partido;
     }
   }
+  async GetPartidoById(idP: number) {
+    {
+      const Partido = await this.PartidoPendienteRepository.findOne({
+        where: { idPartido: idP },
+      });
+      return Partido;
+    }
+  }
 }
