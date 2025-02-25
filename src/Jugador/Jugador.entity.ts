@@ -35,7 +35,7 @@ export class Jugador {
   @Column()
   Rango: RangoJugador = RangoJugador.Octava;
 
-  @Column()
+  @Column({nullable: true})
   Foto: string;
 
   @Column()
@@ -43,7 +43,4 @@ export class Jugador {
 
   @Column()
   iv: string;
-
-  @Column({nullable: true})
-  Cant_Partidos: number;
 }

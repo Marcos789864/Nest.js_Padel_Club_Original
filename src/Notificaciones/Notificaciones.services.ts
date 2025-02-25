@@ -25,6 +25,19 @@ export class NotificacionesService {
     return this.notificacionesRepository.find();
   }
 
+  async VerNotificacion(id){
+    try{
+      const newNoti = this.notificacionesRepository.update(id,{
+        Vista: true
+      })
+      console.log(newNoti);
+      return newNoti;
+    } catch(error){
+      console.log('Error al modificar la notificacion:', error);
+      throw new Error('Me canse odio tantas preguntas');
+    }
+  }
+
   GetNotificacion(id) {
     return this.notificacionesRepository.find({
       where: {

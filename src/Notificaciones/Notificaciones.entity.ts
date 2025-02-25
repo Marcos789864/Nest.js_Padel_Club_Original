@@ -30,4 +30,7 @@ export class Notificaciones {
 
   @Column({nullable: true})
   idPartido: number;
+
+  @Column()
+  Vista: boolean = false;
 }

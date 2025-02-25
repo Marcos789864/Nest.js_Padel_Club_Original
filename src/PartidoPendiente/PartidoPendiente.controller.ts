@@ -7,6 +7,7 @@ import {
   Param,
   BadRequestException,
   NotFoundException,
+  Patch,
 } from '@nestjs/common';
 import { PartidoPendienteDto } from './dto/PartidoPendienteDto';
 import { PartidoPendienteService } from './PartidoPendiente.service';
@@ -52,15 +53,24 @@ export class PartidoPendienteController {
     }
   }
 
+  @Patch('confirmar-partido/:idPartido')
+  async Confirmar(@Param('idPartido')  idPartido: number) {
+    console.log('Entró al controlador con ID:', idPartido);
+    return this.partidoPendienteService.Confirmar(idPartido);
+  }
+
+
   @Get(':idPartido')
   async GetPartidoById(@Param('idPartido') idPartido: number) {
     try {
-      const result =
-        await this.partidoPendienteService.GetPartidoById(idPartido);
+      const result = await this.partidoPendienteService.GetPartidoById(idPartido);
       return result;
     } catch (error) {
       console.error('Error al crear el partido:', error);
       throw new Error('Error al buscar partido');
     }
   }
+
+  
+
 }

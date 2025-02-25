@@ -9,9 +9,9 @@ export class PartidoPendiente {
   idGrupo: number;
   @Column()
   set1: string;
-  @Column()
+  @Column({nullable: true})
   set2: string;
-  @Column()
+  @Column({nullable: true})
   set3: string;
   @Column()
   fecha: Date;

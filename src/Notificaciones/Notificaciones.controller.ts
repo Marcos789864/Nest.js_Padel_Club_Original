@@ -37,4 +37,10 @@ export class NotificacionesController {
     console.log('numero id noti' + id);
     return this.notificacionesService.GetNotificacionId(id);
   }
+
+  @Get('vista/:id')
+  async EditarNotificacion(@Param('id', ParseIntPipe) id: number) {
+    console.log('numero id noti' + id);
+    return this.notificacionesService.VerNotificacion(id);
+  }
 }

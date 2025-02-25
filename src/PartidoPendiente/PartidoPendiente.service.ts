@@ -72,4 +72,18 @@ export class PartidoPendienteService {
       return Partido;
     }
   }
+  async Confirmar(id) {
+    {
+      try{
+        const newPartido = this.PartidoPendienteRepository.update(id,{
+          confirmacion: true
+        })
+        console.log('kajajajajajaja', newPartido)
+        return newPartido;
+      } catch(error) {
+        console.log('Error al modificar partida:', error);
+        throw new Error('Me canse no odio');
+      }
+    }
+  }
 }
